@@ -4,9 +4,6 @@ import companydata
 
 
 
-
-
-
 class Index:
     def GET(self):
 		mail = is_connected()
@@ -27,12 +24,12 @@ class Connection:
 		if mail is not None:
 			raise web.seeother('/')
 		elif '_signup_' in data and data['_signup_'] == "signup":
-
 			mail = data['_mail_']
 			time = useful.now()
 			password = useful.encrypt(data['_password_'],time)
 			user = companydata.User()
-			if user.verify(data):
+			test = company.AllUsers.get_user(mail)
+			if user.verify(data) and test == None:
 				user.data['mail'] = mail
 				user.data['password'] = password
 				user.data['registration'] = time
@@ -42,6 +39,15 @@ class Connection:
 				user.data['active'] = 1
 				user.save(company)
 			return render.connection()
+		elif '_login_'in data and data['_login_'] == "login":
+			test = connexion(data['_username_'], data['_password_'])
+			if test != None :
+				infoCookie = data['_username_'] + ',' + test.data['password']
+				update_cookie(infoCookie)
+				company.AllConnectedUsers.add_user(test)
+			raise web.seeother('/')
+			
+				
 		
 class Disconnect():
     def GET(self):
@@ -64,11 +70,14 @@ def is_connected():
 def connexion(username, password):
     user = company.AllUsers.get_user(username)
     if user is not None:
-        cryptedPassword = useful.encrypt(password, user.fields['registration'])
-        if user.checkPassword(cryptedPassword) is True:
+        cryptedPassword = useful.encrypt(password, user.data['registration'])
+        if user.check_password(cryptedPassword) is True:
             return user
     return None
-
+    
+def update_cookie(infoCookie):
+    web.setcookie('companyon', infoCookie, expires=9000)
+    
 if __name__ == "__main__":
 	web.config.debug = True
 	company = companydata.CompagnyOn()

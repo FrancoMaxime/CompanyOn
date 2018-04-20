@@ -101,6 +101,9 @@ class User(Object):
 	def __init__(self):
 		Object.__init__(self)
 		
+	def check_password(self, password):
+		return self.data['password'] == password
+		
 class AllCompanies(AllObjects):
 	def __init__(self, config):
 		AllObjects.__init__(self, config)
@@ -138,14 +141,14 @@ class AllConnectedUsers():
 
     def add_user(self, user):
         self.update()
-        mail = user.fields['mail']
+        mail = user.data['mail']
         if mail not in self.users:
             self.users[mail] = ConnectedUser(user)
         else:
             self.users[mail].update()
 
     def update(self):
-        updatetime = time.time()
+        updatetime = useful.get_timestamp()
         for mail, connecteduser in self.users.items():
             if (updatetime - connecteduser.datetime) > 900:
                 del self.users[mail]
@@ -154,7 +157,7 @@ class AllConnectedUsers():
         self.update()
         if mail in self.users:
             user = self.users[mail].cuser
-            if user.fields['password'] == password:
+            if user.data['password'] == password:
                 self.users[mail].update()
                 return True
         return False
@@ -166,7 +169,7 @@ class AllConnectedUsers():
 class ConnectedUser():
     def __init__(self, user):
         self.cuser = user
-        self.datetime = time.time()
+        self.datetime = useful.get_timestamp()
 
     def update(self):
-        self.datetime = time.time()
+        self.datetime = useful.get_timestamp()
