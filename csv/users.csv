@@ -1,0 +1,2 @@
+begin	id_user	mail	password	firstname	lastname	id_company	remark	phonenumber	id_role	active
+test_begin	1	mail	pwd	franco	maxime	1	rmk	067333030	1	1
