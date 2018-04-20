@@ -9,6 +9,7 @@ $def with(content)
     <link rel="stylesheet" href="/static/stylesheets/main.css">
     <link rel="stylesheet" href="/static/stylesheets/animate.css">
     <link rel="stylesheet" href="/static/stylesheets/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/stylesheets/companyon.css">
 
     <link rel="icon" type="image/png" href="/static/images/logobouftoolsmini.png" /><strong></strong>
 
@@ -30,7 +31,7 @@ $def with(content)
     <!-- Logo starts -->
     <div class="logo">
         <a href="/home">
-            <img src="/static/images/bouftoolslogominiblanc.png"  style="margin-left:-30px;margin-top:5px;" alt="logo">
+            <img src="/static/images/companyon.png"  class="logo" style="width: 55%;margin-top:-5px;" alt="logo">
         </a>
     </div>
 
@@ -91,10 +92,16 @@ $def with(content)
                                             <span>Accueil</span>
                                         </a>
                                     </li>
-                                    <li class='has-sub <cfif params.controller == "Artisanat"> highlight active</cfif>'>
+                                    <li>
+                                        <a href='/home'>
+                                            <i class="fas fa-hands-helping"></i>
+                                            <span>Requêtes</span>
+                                        </a>
+                                    </li>
+                                    <li class='has-sub'>
                                         <a href='##'>
-                                            <i class="fa fa-cogs"></i>
-                                            <span>Artisanat</span>
+                                            <i class="fa fa-building"></i>
+                                            <span>Mon entreprise</span>
                                         </a>
                                         <ul>
                                     <li>
@@ -141,7 +148,7 @@ $def with(content)
                                     </li>
                                 </ul>
                                 </li>
-                                <li class='has-sub <cfif params.controller == "Recolte"> highlight active</cfif>'>
+                                <li class='has-sub'>
                                     <a href='##'>
                                         <i class="fa fa-flask"></i>
                                         <span>Récolte</span>
@@ -185,7 +192,7 @@ $def with(content)
                                 </li>
                                 </ul>
                                 </li>
-                                <li class='has-sub <cfif params.controller == "diver"> highlight active</cfif>' >
+                                <li class='has-sub' >
                                     <a href='##'>
                                         <i class="fa fa-cubes"></i>
                                         <span>Divers</span>
@@ -199,7 +206,7 @@ $def with(content)
                                 </li>
                                 </ul>
                                 </li>
-                                <li class='has-sub <cfif params.controller == "outil"> highlight active</cfif>' >
+                                <li class='has-sub' >
                                     <a href='##'>
                                         <i class="fa fa-cog"></i>
                                         <span>Outils</span>
@@ -281,8 +288,8 @@ $def with(content)
 
                             <!-- Footer starts -->
                             <footer>
-                                Copyright 2017 Bouftools.
-                                Les informations proviennent du jeu Dofus d'Ankama. Certaines images sont la propriété d'Ankama Studio.
+                                Copyright 2018 CompanyOn.
+
                             </footer>
                             <!-- Footer ends -->
                             <script src="/static/javascripts/jquery.js"></script>
