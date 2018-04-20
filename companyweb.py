@@ -13,6 +13,7 @@ if __name__ == "__main__":
 	web.config.debug = True
 	company = data.CompagnyOn()
 	company.load()
+	print company.AllUsers.elements['1'].data
 	web.template.Template.globals['data'] = company
 	web.template.Template.globals['useful'] = useful
 	layout = web.template.frender('templates/layout.html')
