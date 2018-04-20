@@ -26,6 +26,7 @@ class AllObjects():
 	def __init__(self, config):
 		self.config = config
 		self.elements = {}
+		self.last_id = 0
 	
 	def load(self):
 		self.check_csv()
@@ -49,7 +50,9 @@ class AllObjects():
 		with open(self.filename) as csvfile:
 			reader = unicodecsv.DictReader(csvfile, delimiter="\t")
 			for row in reader:
-				key = row[self.keyid]
+				key = int(row[self.keyid])
+				if key > self.last_id:
+					self.last_id = key
 				currObject = self.new_object()
 				currObject.data = row
 				currObject.id = key
@@ -65,10 +68,18 @@ class Object():
 		if anUser != None:
 			self.data["user"] = anUser.data['u_id']
 		allObjects = configuration.find_all_from_object(self)
+		if (not allObjects.keyid in self.data) or (self.data[allObjects.keyid] == ""):
+			self.data[allObjects.keyid] = int(allObjects.last_id) + 1
+			allObjects.last_id = int(allObjects.last_id) + 1
 		with open(allObjects.filename, "a") as csvfile:
 			writer = unicodecsv.DictWriter(csvfile, delimiter='\t', fieldnames=allObjects.fields, encoding="utf-8")
 			writer.writerow(self.data)
 		return self
+	def verify(self,data):
+		for k,v in data.items():
+			if v == "":
+				return False
+		return True
 
 
 class AllUsers(AllObjects):

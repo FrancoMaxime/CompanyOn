@@ -1,4 +1,4 @@
-$def with (message)
+$def with ()
 $var recursive : True
 <html lang="en">
 <head>
@@ -38,7 +38,7 @@ $var recursive : True
 						<div class="login-header">
 							<h4>Sign In To Your Account</h4>
 						</div>
-						<form action="index.html">
+						<form method="post" action="" id="loginForm" data-bv-message="This value is not valid"  data-bv-live="enabled" data-bv-container="tooltip"data-bv-submitButtons="#loginSubmit">
 							<div class="form-group has-feedback">
 								<label class="control-label" for="userName">User Name</label>
 								<input type="text" name="_username_" class="form-control" id="userName" placeholder="User Name" autofocus>
@@ -59,23 +59,33 @@ $var recursive : True
 						<div class="login-header">
 							<h4>Sign Up for Everest</h4>
 						</div>
-						<form method="post" action="" id="loginForm" data-bv-message="This value is not valid"  data-bv-live="enabled" data-bv-container="tooltip"data-bv-submitButtons="#loginSubmit">
+						<form method="post"  id="signupForm" >
 							<div class="form-group has-feedback">
-								<label class="control-label" for="userName1">User Name</label>
-								<input type="text" class="form-control" id="userName1">
+								<label class="control-label" for="nom">Nom</label>
+								<input type="text" name="_lastname_" class="form-control" id="nom">
 								<i class="fa fa-user form-control-feedback"></i>
 							</div>
 							<div class="form-group has-feedback">
-								<label class="control-label" for="password1">Password</label>
-								<input type="text" class="form-control" id="password1">
-								<i class="fa fa-key form-control-feedback"></i>
+								<label class="control-label" for="prenom">Prénom</label>
+								<input type="text" name="_firstname_" class="form-control" id="prenom">
+								<i class="fa fa-user form-control-feedback"></i>
 							</div>
 							<div class="form-group has-feedback">
-								<label class="control-label" for="password2">Confirm password</label>
-								<input type="text" class="form-control" id="password2">
+								<label class="control-label" for="mail">Mail</label>
+								<input type="text" name="_mail_" class="form-control" id="mail">
+								<i class="fa fa-envelope form-control-feedback"></i>
+							</div>
+							<div class="form-group has-feedback">
+								<label class="control-label" for="phone">Téléphone</label>
+								<input type="text" name="_phonenumber_" class="form-control" id="phone">
+								<i class="fa fa-phone form-control-feedback"></i>
+							</div>
+							<div class="form-group has-feedback">
+								<label class="control-label" for="password1">Password</label>
+								<input type="password" name="_password_" class="form-control" id="password1">
 								<i class="fa fa-key form-control-feedback"></i>
 							</div>
-							<input type="submit" value="Sign Up" class="btn btn-danger btn-lg btn-block">
+							<input type="submit" name="_signup_" value="signup" class="btn btn-danger btn-lg btn-block">
 						</form>
 						<a href="#login">Already have an account? <span class="text-danger">Sign In</span></a>
 					</div>
@@ -84,7 +94,7 @@ $var recursive : True
 						<div class="login-header">
 							<h4>Reset your Password</h4>
 						</div>
-						<form action="index.html">
+						<form>
 							<div class="form-group has-feedback">
 								<label class="control-label" for="password3">Password</label>
 								<input type="text" class="form-control" id="password3">
