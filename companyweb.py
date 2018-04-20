@@ -4,7 +4,10 @@ import companydata as data
 
 class Index:
     def GET(self):
-        return render.index('test ta mere')
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		return render.index('test ta mere')
         
 class Connection:
 	def GET(self):
