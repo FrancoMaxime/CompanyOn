@@ -1,1 +1,1 @@
-begin	id_company	name	TVA	remark	domain
+begin	id_company	name	TVA	remark	domain	id_coworking	user

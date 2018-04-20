@@ -1,5 +1,6 @@
 import os
 import unicodecsv
+import useful
 
 class CompagnyOn():
 	def __init__(self):
@@ -11,6 +12,14 @@ class CompagnyOn():
 		self.AllUsers.load()
 		self.AllCompanies.load()
 		self.AllRoles.load()
+		
+	def find_all_from_object(self, object):
+		if object.__class__.__name__ == User.__name__:
+			return self.AllUsers
+		elif object.__class__.__name__ == Compagny.__class__ :
+			return self.AllCompanies
+		elif object.__class__.__name__ == Role.__class__ :
+			return self.AllRoles
 
 class AllObjects():
 	def __init__(self, config):
@@ -27,7 +36,6 @@ class AllObjects():
 			self.load_data()
 
 	def create_csv(self):
-		print "flibidi"
 		with open(self.filename, 'w') as csvfile:
 			csvfile.write(self.fields[0])
 			tmp = 1
@@ -50,12 +58,22 @@ class AllObjects():
 class Object():
 	def __init__(self):
 		self.data = {}
+		
+	def save(self, configuration, anUser=None):
+		self.data["begin"] = useful.now()
+		if anUser != None:
+			self.data["user"] = anUser.data['u_id']
+		allObjects = configuration.find_all_from_object(self)
+		with open(allObjects.filename, "a") as csvfile:
+			writer = unicodecsv.DictWriter(csvfile, delimiter='\t', fieldnames=allObjects.fields, encoding="utf-8")
+			writer.writerow(self.data)
+		return self
 
 
 class AllUsers(AllObjects):
 	def __init__(self, config):
 		AllObjects.__init__(self, config)
-		self.fields = ['begin','id_user','mail','password','firstname','lastname','id_company', 'remark','phonenumber','id_role','active']
+		self.fields = ['begin','id_user','mail','password','firstname','lastname','id_company', 'remark','phonenumber','id_role','active', 'user', 'rating']
 		self.filename = 'csv/users.csv'
 		self.keyid = 'id_user'
 		
@@ -69,7 +87,7 @@ class User(Object):
 class AllCompanies(AllObjects):
 	def __init__(self, config):
 		AllObjects.__init__(self, config)
-		self.fields = ['begin','id_company','name', 'TVA', 'remark', 'domain','id_coworking']
+		self.fields = ['begin','id_company','name', 'TVA', 'remark', 'domain','id_coworking', 'user']
 		self.filename = 'csv/companies.csv'
 		self.keyid = 'id_company'
 		
@@ -83,7 +101,7 @@ class Company(Object):
 class AllRoles(AllObjects):
 	def __init__(self, config):
 		AllObjects.__init__(self, config)
-		self.fields = ['begin','id_role','name', 'TVA', 'remark', 'domain']
+		self.fields = ['begin','id_role','name', 'TVA', 'remark', 'domain', 'user']
 		self.filename = 'csv/roles.csv'
 		self.keyid = 'id_role'
 		

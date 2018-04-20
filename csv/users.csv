@@ -1,2 +1,8 @@
-begin	id_user	mail	password	firstname	lastname	id_company	remark	phonenumber	id_role	active
-test_begin	1	mail	pwd	franco	maxime	1	rmk	067333030	1	1
+begin	id_user	mail	password	firstname	lastname	id_company	remark	phonenumber	id_role	active	user	rating
+2018-04-20 22:06:35		mongolotest										
+2018-04-20 22:07:18		mongolotest										
+2018-04-20 22:15:57		mongolotest										
+2018-04-20 22:16:43		mongolotest										
+2018-04-20 22:17:00		mongolotest										
+2018-04-20 22:17:35		mongolotest										
+2018-04-20 22:19:22		mongolotest										

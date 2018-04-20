@@ -13,11 +13,12 @@ if __name__ == "__main__":
 	web.config.debug = True
 	company = data.CompagnyOn()
 	company.load()
-	print company.AllUsers.elements['1'].data
+	test = data.User()
+	test.data['mail'] = "mongolotest"
+	test.save(company)
 	web.template.Template.globals['data'] = company
 	web.template.Template.globals['useful'] = useful
-	layout = web.template.frender('templates/layout.html')
-	render = web.template.render('templates/', base=layout)
+	render = web.template.render('templates/', base='layout')
 	urls = (
         '/', 'index',
         '/index','index'
