@@ -7,6 +7,7 @@ class CompagnyOn():
 		self.AllUsers = AllUsers(self)
 		self.AllCompanies=AllCompanies(self)
 		self.AllRoles = AllRoles(self)
+		self.AllConnectedUsers = AllConnectedUsers()
 		
 	def load(self):
 		self.AllUsers.load()
@@ -73,12 +74,17 @@ class Object():
 class AllUsers(AllObjects):
 	def __init__(self, config):
 		AllObjects.__init__(self, config)
-		self.fields = ['begin','id_user','mail','password','firstname','lastname','id_company', 'remark','phonenumber','id_role','active', 'user', 'rating']
+		self.fields = ['begin','id_user','mail','password','firstname','lastname','id_company', 'remark','phonenumber','id_role','active', 'user', 'rating', 'registration']
 		self.filename = 'csv/users.csv'
 		self.keyid = 'id_user'
 		
 	def new_object(self):
 		return User()
+	
+	def get_user(self, mail):
+		for myId, user in self.elements.items():
+			if user.data['mail'] == mail:
+				return user
 				
 class User(Object):
 	def __init__(self):
@@ -119,7 +125,7 @@ class AllConnectedUsers():
     def __getitem__(self, key):
         return self.users[key]
 
-    def addUser(self, user):
+    def add_user(self, user):
         self.update()
         mail = user.fields['mail']
         if mail not in self.users:
@@ -133,7 +139,7 @@ class AllConnectedUsers():
             if (updatetime - connecteduser.datetime) > 900:
                 del self.users[mail]
 
-    def isConnected(self, mail, password):
+    def is_connected(self, mail, password):
         self.update()
         if mail in self.users:
             user = self.users[mail].cuser
@@ -142,11 +148,14 @@ class AllConnectedUsers():
                 return True
         return False
 
-    def getLanguage(self, mail):
-        if mail in self.users:
-            return self.users[mail].cuser.fields['language']
-        return 'english'
-
     def disconnect(self, mail):
         if mail in self.users:
             del self.users[mail]
+
+class ConnectedUser():
+    def __init__(self, user):
+        self.cuser = user
+        self.datetime = time.time()
+
+    def update(self):
+        self.datetime = time.time()
