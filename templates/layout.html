@@ -1,307 +1,295 @@
 $def with(content)
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+$if content.recursive == 'False':
+	<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Bouftools</title>
-    <link rel="stylesheet" href="/static/stylesheets/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/stylesheets/main.css">
-    <link rel="stylesheet" href="/static/stylesheets/animate.css">
-    <link rel="stylesheet" href="/static/stylesheets/font-awesome.min.css">
+		<title>Bouftools</title>
+		<link rel="stylesheet" href="/static/stylesheets/bootstrap.min.css">
+		<link rel="stylesheet" href="/static/stylesheets/main.css">
+		<link rel="stylesheet" href="/static/stylesheets/animate.css">
+		<link rel="stylesheet" href="/static/stylesheets/font-awesome.min.css">
 
-    <link rel="icon" type="image/png" href="/static/images/logobouftoolsmini.png" /><strong></strong>
+		<link rel="icon" type="image/png" href="/static/images/logobouftoolsmini.png" /><strong></strong>
 
-
-
-
-
+	</head>
 
 
+	<body>
 
-</head>
+	<!-- Header Start -->
+	<header>
 
-
-<body>
-
-<!-- Header Start -->
-<header>
-
-    <!-- Logo starts -->
-    <div class="logo">
-        <a href="/home">
-            <img src="/static/images/bouftoolslogominiblanc.png"  style="margin-left:-30px;margin-top:5px;" alt="logo">
-        </a>
-    </div>
+		<!-- Logo starts -->
+		<div class="logo">
+			<a href="/home">
+				<img src="/static/images/bouftoolslogominiblanc.png"  style="margin-left:-30px;margin-top:5px;" alt="logo">
+			</a>
+		</div>
 
 
 
-    <!-- Logo ends -->
-    <!-- Mini right nav starts -->
-    <div class="pull-right">
-        <ul id="mini-nav" class="clearfix">
+		<!-- Logo ends -->
+		<!-- Mini right nav starts -->
+		<div class="pull-right">
+			<ul id="mini-nav" class="clearfix">
 
 
-            <li class="list-box hidden-lg hidden-md hidden-sm" id="mob-nav">
-                <a href="##">
-                    <i class="fa fa-reorder"></i>
-                </a>
-            </li>
-            <li class="list-box hidden-xs">
-                <a id="drop1" href="https://www.facebook.com/Bouftools/" role="button" target="_blank">
-                    <i class="fa fa-facebook " aria-hidden="true"></i>
-                </a>
-            </li>
-            <li class="list-box hidden-xs">
-                <a id="drop1" href="https://twitter.com/bouftools" role="button" target="_blank">
-                    <i class="fa fa-twitter fa-5x"></i>
-                </a>
-            </li>
-            <li class="list-box hidden-xs">
-                <a href="mailto:bouftools@gmail.com" class="user-avtar animated">
-                    <i class="fa fa-envelope fa-5x"></i>
-                </a>
+				<li class="list-box hidden-lg hidden-md hidden-sm" id="mob-nav">
+					<a href="##">
+						<i class="fa fa-reorder"></i>
+					</a>
+				</li>
+				<li class="list-box hidden-xs">
+					<a id="drop1" href="https://www.facebook.com/Bouftools/" role="button" target="_blank">
+						<i class="fa fa-facebook " aria-hidden="true"></i>
+					</a>
+				</li>
+				<li class="list-box hidden-xs">
+					<a id="drop1" href="https://twitter.com/bouftools" role="button" target="_blank">
+						<i class="fa fa-twitter fa-5x"></i>
+					</a>
+				</li>
+				<li class="list-box hidden-xs">
+					<a href="mailto:bouftools@gmail.com" class="user-avtar animated">
+						<i class="fa fa-envelope fa-5x"></i>
+					</a>
 
-            </li>
+				</li>
 
 
 
 
 
-        </ul>
-    </div>
-    <!-- Mini right nav ends -->
+			</ul>
+		</div>
+		<!-- Mini right nav ends -->
 
 
 
-</header>
+	</header>
 
 
-                        <!-- Header ends -->
+			<!-- Header ends -->
 
-                        <!-- Left sidebar starts -->
-                        <aside id="sidebar">
+			<!-- Left sidebar starts -->
+			<aside id="sidebar">
 
-                            <!-- Menu start -->
-                            <div id='menu'>
-                                <ul>
-                                    <li>
-                                        <a href='/home'>
-                                            <i class="fa fa-home"></i>
-                                            <span>Accueil</span>
-                                        </a>
-                                    </li>
-                                    <li class='has-sub <cfif params.controller == "Artisanat"> highlight active</cfif>'>
-                                        <a href='##'>
-                                            <i class="fa fa-cogs"></i>
-                                            <span>Artisanat</span>
-                                        </a>
-                                        <ul>
-                                    <li>
-                                        <a href='/artisanat/bijoutier'>
-                                            <i class="fa fa-diamond"></i>
-                                            <span>Bijoutier</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='/artisanat/bricoleur'>
-                                            <i class="fa fa-key"></i>
-                                            <span>Bricoleur</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='/artisanat/cordonnier'>
-                                            <i class="fa fa-scissors"></i>
-                                            <span>Cordonnier</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='/artisanat/faconneur'>
-                                            <i class="fa fa-shield"></i>
-                                            <span>Façonneur</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='/artisanat/forgeron'>
-                                            <i class="fa fa-gavel"></i>
-                                            <span>Forgeron</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='/artisanat/sculpteur'>
-                                            <i class="fa fa-magic"></i>
-                                            <span>Sculpteur</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href='/artisanat/tailleur'>
-                                            <i class="fa fa-shopping-bag"></i>
-                                            <span>Tailleur</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                </li>
-                                <li class='has-sub <cfif params.controller == "Recolte"> highlight active</cfif>'>
-                                    <a href='##'>
-                                        <i class="fa fa-flask"></i>
-                                        <span>Récolte</span>
-                                    </a>
-                                    <ul>
-                                <li>
-                                    <a href='/recolte/alchimiste'>
-                                        <i class="fa fa-flask"></i>
-                                        <span>Alchimiste</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href='/recolte/bucheron'>
-                                        <i class="fa fa-tree"></i>
-                                        <span>Bûcheron</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/recolte/chasseur">
-                                        <i class="fa fa-paw"></i>
-                                        <span>Chasseur</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href='/recolte/mineur'>
-                                        <i class="fa fa-bomb"></i>
-                                        <span>Mineur</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href='/recolte/paysan'>
-                                        <i class="fa fa-cutlery"></i>
-                                        <span>Paysan</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href='/recolte/poissonier'>
-                                        <i class="fa fa-anchor"></i>
-                                        <span>Poissonier</span>
-                                    </a>
-                                </li>
-                                </ul>
-                                </li>
-                                <li class='has-sub <cfif params.controller == "diver"> highlight active</cfif>' >
-                                    <a href='##'>
-                                        <i class="fa fa-cubes"></i>
-                                        <span>Divers</span>
-                                    </a>
-                                    <ul>
-                                <li>
-                                    <a href='/diver/ressource'>
-                                        <i class="fa fa-cube"></i>
-                                        <span>Ressources</span>
-                                    </a>
-                                </li>
-                                </ul>
-                                </li>
-                                <li class='has-sub <cfif params.controller == "outil"> highlight active</cfif>' >
-                                    <a href='##'>
-                                        <i class="fa fa-cog"></i>
-                                        <span>Outils</span>
-                                    </a>
-                                    <ul>
-                                <li>
-                                    <a href='/outil/brisage'>
-                                        <i class="fa fa-book"></i>
-                                        <span>Brisages</span>
-                                    </a>
-                                </li>
-                                </ul>
-                                </li>
-                                </ul>
-                            </div>
-                            <!-- Menu End -->
-                            <div class="freebies">
+				<!-- Menu start -->
+				<div id='menu'>
+					<ul>
+						<li>
+							<a href='/home'>
+								<i class="fa fa-home"></i>
+								<span>Accueil</span>
+							</a>
+						</li>
+						<li class='has-sub <cfif params.controller == "Artisanat"> highlight active</cfif>'>
+							<a href='##'>
+								<i class="fa fa-cogs"></i>
+								<span>Artisanat</span>
+							</a>
+							<ul>
+						<li>
+							<a href='/artisanat/bijoutier'>
+								<i class="fa fa-diamond"></i>
+								<span>Bijoutier</span>
+							</a>
+						</li>
+						<li>
+							<a href='/artisanat/bricoleur'>
+								<i class="fa fa-key"></i>
+								<span>Bricoleur</span>
+							</a>
+						</li>
+						<li>
+							<a href='/artisanat/cordonnier'>
+								<i class="fa fa-scissors"></i>
+								<span>Cordonnier</span>
+							</a>
+						</li>
+						<li>
+							<a href='/artisanat/faconneur'>
+								<i class="fa fa-shield"></i>
+								<span>Façonneur</span>
+							</a>
+						</li>
+						<li>
+							<a href='/artisanat/forgeron'>
+								<i class="fa fa-gavel"></i>
+								<span>Forgeron</span>
+							</a>
+						</li>
+						<li>
+							<a href='/artisanat/sculpteur'>
+								<i class="fa fa-magic"></i>
+								<span>Sculpteur</span>
+							</a>
+						</li>
+						<li>
+							<a href='/artisanat/tailleur'>
+								<i class="fa fa-shopping-bag"></i>
+								<span>Tailleur</span>
+							</a>
+						</li>
+					</ul>
+					</li>
+					<li class='has-sub <cfif params.controller == "Recolte"> highlight active</cfif>'>
+						<a href='##'>
+							<i class="fa fa-flask"></i>
+							<span>Récolte</span>
+						</a>
+						<ul>
+					<li>
+						<a href='/recolte/alchimiste'>
+							<i class="fa fa-flask"></i>
+							<span>Alchimiste</span>
+						</a>
+					</li>
+					<li>
+						<a href='/recolte/bucheron'>
+							<i class="fa fa-tree"></i>
+							<span>Bûcheron</span>
+						</a>
+					</li>
+					<li>
+						<a href="/recolte/chasseur">
+							<i class="fa fa-paw"></i>
+							<span>Chasseur</span>
+						</a>
+					</li>
+					<li>
+						<a href='/recolte/mineur'>
+							<i class="fa fa-bomb"></i>
+							<span>Mineur</span>
+						</a>
+					</li>
+					<li>
+						<a href='/recolte/paysan'>
+							<i class="fa fa-cutlery"></i>
+							<span>Paysan</span>
+						</a>
+					</li>
+					<li>
+						<a href='/recolte/poissonier'>
+							<i class="fa fa-anchor"></i>
+							<span>Poissonier</span>
+						</a>
+					</li>
+					</ul>
+					</li>
+					<li class='has-sub <cfif params.controller == "diver"> highlight active</cfif>' >
+						<a href='##'>
+							<i class="fa fa-cubes"></i>
+							<span>Divers</span>
+						</a>
+						<ul>
+					<li>
+						<a href='/diver/ressource'>
+							<i class="fa fa-cube"></i>
+							<span>Ressources</span>
+						</a>
+					</li>
+					</ul>
+					</li>
+					<li class='has-sub <cfif params.controller == "outil"> highlight active</cfif>' >
+						<a href='##'>
+							<i class="fa fa-cog"></i>
+							<span>Outils</span>
+						</a>
+						<ul>
+					<li>
+						<a href='/outil/brisage'>
+							<i class="fa fa-book"></i>
+							<span>Brisages</span>
+						</a>
+					</li>
+					</ul>
+					</li>
+					</ul>
+				</div>
+				<!-- Menu End -->
+				<div class="freebies">
 
-                                <!-- Sidebar Extras -->
-                                <div class="sidebar-addons">
-                                    <ul class="views">
-                                        <li>
-                                            <div>
-                                                <h5><b style="color:grey">Partenaires</b></h5>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-line-chart" style="color:grey"></i>
-                                            <div class="details">
-                                                <a href="https://statofus.com/fr/" target="_blank"><p>Statofus</p></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-lightbulb-o" style="color:grey"></i>
-                                            <div class="details">
-                                                <a href="http://www.dofastuces.fr/" target="_blank"><p>Dofastuces</p></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div>
-                                                <h5><b style="color:grey">Informations</b></h5>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-thumb-tack" style="color:grey"></i>
-                                            <div class="details">
-                                                <a href="/home/apropos"><p>À propos</p></a>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-paypal" style="color:grey" aria-hidden="true"></i>
-                                            <div class="details">
-                                                <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NPGY5SJE6NY8W"  target="_blank"><p>Donation</p></a>
-                                            </div>
-                                        </li>
-
-
-                                    </ul>
-
-                                </div>
+					<!-- Sidebar Extras -->
+					<div class="sidebar-addons">
+						<ul class="views">
+							<li>
+								<div>
+									<h5><b style="color:grey">Partenaires</b></h5>
+								</div>
+							</li>
+							<li>
+								<i class="fa fa-line-chart" style="color:grey"></i>
+								<div class="details">
+									<a href="https://statofus.com/fr/" target="_blank"><p>Statofus</p></a>
+								</div>
+							</li>
+							<li>
+								<i class="fa fa-lightbulb-o" style="color:grey"></i>
+								<div class="details">
+									<a href="http://www.dofastuces.fr/" target="_blank"><p>Dofastuces</p></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<h5><b style="color:grey">Informations</b></h5>
+								</div>
+							</li>
+							<li>
+								<i class="fa fa-thumb-tack" style="color:grey"></i>
+								<div class="details">
+									<a href="/home/apropos"><p>À propos</p></a>
+								</div>
+							</li>
+							<li>
+								<i class="fa fa-paypal" style="color:grey" aria-hidden="true"></i>
+								<div class="details">
+									<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NPGY5SJE6NY8W"  target="_blank"><p>Donation</p></a>
+								</div>
+							</li>
 
 
+						</ul>
 
-                            </div>
-
-                        </aside>
-                        <!-- Left sidebar ends -->
-
-                        <!-- Dashboard Wrapper starts -->
-                        <div class="dashboard-wrapper">
+					</div>
 
 
 
-                            <!-- Top Bar starts -->
+				</div>
 
-                            $:content
+			</aside>
+			<!-- Left sidebar ends -->
 
-                            <!-- Main Container ends -->
-
-                            <!-- Footer starts -->
-                            <footer>
-                                Copyright 2017 Bouftools.
-                                Les informations proviennent du jeu Dofus d'Ankama. Certaines images sont la propriété d'Ankama Studio.
-                            </footer>
-                            <!-- Footer ends -->
-                            <script src="/static/javascripts/jquery.js"></script>
-                            <script src="/static/javascripts/bootstrap.min.js"></script>
-                            <script src="/static/javascripts/sparkline.js"></script>
-                            <script src="/static/javascripts/jquery.scrollUp.js"></script>
-                            <script src="/static/javascripts/moment.js"></script>
-                            <script src="/static/javascripts/bootstrap-notify.min.js"></script>
-                            <script src="/static/javascripts/custom.js"></script>
-
-                        </div>
-                        <!-- Dashboard Wrapper ends -->
+			<!-- Dashboard Wrapper starts -->
+			<div class="dashboard-wrapper">
 
 
 
+				<!-- Top Bar starts -->
 
+				$:content
 
+				<!-- Main Container ends -->
 
+				<!-- Footer starts -->
+				<footer>
+					Copyright 2017 Bouftools.
+					Les informations proviennent du jeu Dofus d'Ankama. Certaines images sont la propriété d'Ankama Studio.
+				</footer>
+				<!-- Footer ends -->
+				<script src="/static/javascripts/jquery.js"></script>
+				<script src="/static/javascripts/bootstrap.min.js"></script>
+				<script src="/static/javascripts/sparkline.js"></script>
+				<script src="/static/javascripts/jquery.scrollUp.js"></script>
+				<script src="/static/javascripts/moment.js"></script>
+				<script src="/static/javascripts/bootstrap-notify.min.js"></script>
+				<script src="/static/javascripts/custom.js"></script>
 
-
-</body>
-</html>
+			</div>
+			<!-- Dashboard Wrapper ends -->
+	</body>
+	</html>
+$else:
+	$:content

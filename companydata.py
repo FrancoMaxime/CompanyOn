@@ -111,3 +111,42 @@ class AllRoles(AllObjects):
 class Role(Object):
 	def __init__(self):
 		Object.__init__(self)
+		
+class AllConnectedUsers():
+    def __init__(self):
+        self.users = {}
+
+    def __getitem__(self, key):
+        return self.users[key]
+
+    def addUser(self, user):
+        self.update()
+        mail = user.fields['mail']
+        if mail not in self.users:
+            self.users[mail] = ConnectedUser(user)
+        else:
+            self.users[mail].update()
+
+    def update(self):
+        updatetime = time.time()
+        for mail, connecteduser in self.users.items():
+            if (updatetime - connecteduser.datetime) > 900:
+                del self.users[mail]
+
+    def isConnected(self, mail, password):
+        self.update()
+        if mail in self.users:
+            user = self.users[mail].cuser
+            if user.fields['password'] == password:
+                self.users[mail].update()
+                return True
+        return False
+
+    def getLanguage(self, mail):
+        if mail in self.users:
+            return self.users[mail].cuser.fields['language']
+        return 'english'
+
+    def disconnect(self, mail):
+        if mail in self.users:
+            del self.users[mail]
