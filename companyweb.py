@@ -1,5 +1,6 @@
 import web
 import useful
+import companydata as data
 
 class index:
     def GET(self):
@@ -10,13 +11,15 @@ def notfound():
 
 if __name__ == "__main__":
 	web.config.debug = True
-	#c.load()
-	#web.template.Template.globals['c'] = c
+	company = data.CompagnyOn()
+	company.load()
+	web.template.Template.globals['data'] = company
 	web.template.Template.globals['useful'] = useful
 	layout = web.template.frender('templates/layout.html')
 	render = web.template.render('templates/', base=layout)
 	urls = (
-        '/', 'index'
+        '/', 'index',
+        '/index','index'
     )
 	app = web.application(urls, globals())
 	app.notfound = notfound
