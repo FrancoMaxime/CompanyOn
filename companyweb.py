@@ -7,7 +7,7 @@ class Request:
 		mail = is_connected()
 		if mail is None:
 			raise web.seeother('/connection')
-		return render.request()
+		return render.request(mail)
 
 class Index:
     def GET(self):

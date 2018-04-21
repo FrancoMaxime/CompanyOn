@@ -219,7 +219,7 @@ class Request(Object):
 class AllRequests(AllObjects):
 	def __init__(self, config):
 		AllObjects.__init__(self, config)
-		self.fields = ['begin','id_request','subject','id_domain', 'remark', 'state' ,'user']
+		self.fields = ['begin','id_request','subject','id_domain', 'remark', 'status' ,'user']
 		self.filename = 'csv/requests.csv'
 		self.keyid = 'id_request'
 		self.solved = 0
