@@ -5,12 +5,32 @@ $var email : $mail
 
 </div>
 <div class="modal-body">
-    <div class="blog">
+    <div class="blog blog-success">
+        <div class="blog-header">
+            </div>
         <div class="blog-body">
             <img src="static/img/stalinou.jpg" alt="User" class="img-responsive img-circle auto-margin img-xs">
             <br/>
-            <h5 class="text-center">$data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['firstname'] $data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['lastname'] a besoin de votre aide !</h5>
-            <blockquote>$data.AllRequests.elements[id].data['remark']</blockquote>
+            <h4 class="text-center">$data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['firstname'] $data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['lastname'] a besoin de votre aide !</h4>
+
+            <br/>
+            <div class="blog blog-content">
+                <label class="control-label">Domaine</label>
+                <div>$data.AllSpecialities.elements[data.AllRequests.elements[id].data['id_domain']].data['name']</div>
+                <br/>
+                <label class="control-label">Description</label>
+                <div class="">$data.AllRequests.elements[id].data['remark']</div>
+            </div>
+            <div class="modal-footer">
+                <form method="POST" action="/request/1">
+                    <input type="text" name="_requestId_" class="hidden" value="$id">
+                    <input type="text" name="-_mail_" class="hidden" value="$mail">
+                    <button type="submit" class="btn btn-primary btn-saved">Aider</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                </form>
+            </div>
+
+
         </div>
     </div>
 

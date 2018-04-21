@@ -60,12 +60,24 @@ class Request:
 		return render.index(mail)
 
 class Request_Detail:
+
 	def GET(self,id):
 		mail = is_connected()
-
 		if mail is None:
 			raise web.seeother('/connection')
 		return render.requestDetail(mail,str(id))
+	def POST(self,id):
+		mail = is_connected()
+		data = web.input()
+		if mail is None:
+			raise web.seeother('/connection')
+		else:
+			user = company.AllUsers.get_user(mail)
+			request = company.AllRequests.elements[data['_requestId_']]
+			request.data['helper'] = user.data['id_user']
+			request.data['status'] = 2
+			request.save(company,user)
+		raise web.seeother('/index')
 
 class Index:
     def GET(self):
