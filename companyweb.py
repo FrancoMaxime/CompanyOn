@@ -38,7 +38,10 @@ class Request:
 				request.data['subject'] = data['_subject_']
 				request.data['id_domain'] = id
 				request.data['remark'] = data['_remark_']
+				request.data['status'] = 1
 				request.save(company, user)
+				company.AllRequests.total += 1
+				company.AllRequests.waiting += 1
 			else:
 				company.AllRequests.last_id -= 1
 			
@@ -147,7 +150,6 @@ if __name__ == "__main__":
 	web.config.debug = True
 	company = companydata.CompagnyOn()
 	company.load()
-	print company.AllUsers.elements.items()
 	web.template.Template.globals['data'] = company
 	web.template.Template.globals['useful'] = useful
 	render = web.template.render('templates/', base='layout')
