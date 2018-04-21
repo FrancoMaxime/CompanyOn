@@ -141,7 +141,7 @@ class Company:
 		mail = is_connected()
 		if mail is None:
 			raise web.seeother('/connection')
-		return render.enterprise()
+		return render.company(mail)
 		
 	def POST(self):
 		data = web.input()
@@ -196,7 +196,8 @@ if __name__ == "__main__":
         '/compagny', 'Compagny',
 		'/request', 'Request',
 		'/request/(.+)','Request_Detail',
-		'/profile', 'Profile'
+		'/profile', 'Profile',
+		'/company', 'Company',
     )
 	app = web.application(urls, globals())
 	app.notfound = notfound

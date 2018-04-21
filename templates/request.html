@@ -29,11 +29,11 @@ $var email : $mail
 										<td>$v.data['subject']</td>
 										<td>$data.AllSpecialities.elements[v.data['id_domain']].data['name']</td>
 										<td>
-											$if v.data['status'] == '1':
+											$if v.data['status'] == '1' or v.data['status'] == 1:
 												En attente
-											$elif v.data['status'] == '2':
+											$elif v.data['status'] == '2' or v.data['status'] == 2:
 												En cours
-											$elif v.data['status'] == '3':
+											$elif v.data['status'] == '3' or v.data['status'] == 3:
 												Fini
 										</td>
 									</tr>
