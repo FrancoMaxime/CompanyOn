@@ -17,6 +17,7 @@ class CompagnyOn():
 		self.AllRoles.load()
 		self.AllSpecialities.load()
 		self.AllRequests.load()
+		self.AllRequests.load_status()
 		
 	def find_all_from_object(self, object):
 		if object.__class__.__name__ == User.__name__:
@@ -227,9 +228,20 @@ class AllRequests(AllObjects):
 		self.solved = 0
 		self.progress = 0
 		self.waiting = 0
+		self.total = 0
 		
 	def new_object(self):
 		spec = Request()
 		spec.data[self.keyid] = self.last_id +1
 		self.last_id += 1
 		return spec
+	
+	def load_status(self):
+		for k, v in self.elements.items():
+			self.total += 1
+			if v.data['status'] == '1' :
+				self.waiting += 1
+			elif v.data['status'] == '2' :
+				self.progress +=  1
+			elif v.data['status'] == '3' :
+				self.solved += 1
