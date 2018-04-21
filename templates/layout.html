@@ -45,7 +45,7 @@ $if content.recursive == 'False':
 				</li>
 				<li class="list-box user-profile hidden-xs">
 					<a id="drop4" href="#" class="user-avtar animated rubberBanddropdown-toggle" data-toggle="dropdown" data-original-title="" title="">
-						<img src="static/img/stalinou.jpg" alt="user avatar">
+						<img src="/static/img/users$data.AllUsers.get_user(content.email).data['id_user']" alt="user avatar">
 						<span class="user-name">$data.AllUsers.get_user(content.email).data['firstname'] $data.AllUsers.get_user(content.email).data['lastname']<i class="fa fa-angle-down"></i></span>
 					</a>
 					<ul class="dropdown-menu sm user-settings">
@@ -100,7 +100,7 @@ $if content.recursive == 'False':
 											</a>
 											<ul>
 										<li>
-											<a href='/artisanat/bijoutier'>
+											<a href='/company'>
 												<i class="fas fa-users"></i>
 												<span>Employés</span>
 											</a>

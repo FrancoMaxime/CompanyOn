@@ -1,0 +1,51 @@
+$def with (mail)
+$var recursive : False
+$var email : $mail
+$code:
+	user = data.AllUsers.get_user(mail)
+<div class="top-bar">
+    <div class="page-title">
+        Employé(s)
+    </div>
+</div>
+<div class="spacer">
+    <div class="main-container">
+        <div class="container-fluid">
+            <div class="panel panel-white">
+
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-condensed table-bordered no-margin">
+                            <thead>
+                                <th></th>
+                                <th>Nom Prénom</th>
+                                <th>Domaine</th>
+                                <th>Role</th>
+                                <th>Statut</th>
+                            </thead>
+                            <tbody>
+								$for k, v in data.AllUsers.elements.items():
+									$if data.AllUsers.get_user(mail).data['id_company'] == v.data['id_company'] :
+										<tr>
+											<td><img src="/static/img/users$k" alt="Smiley face" height="42" width="42"></td>
+											<td>$data.AllUsers.elements[v.data['user']].data['firstname'] $data.AllUsers.elements[v.data['user']].data['lastname']</td>
+											<td>$data.AllSpecialities.elements[v.data['id_speciality']].data['name']</td>
+											<td>$data.AllRoles.elements[v.data['id_role']].data['name']</td>
+											<td>
+												$if user.data['id_role'] == '1' or user.data['id_role'] == 1:
+													$if v.data['active'] == '1' or v.data['active'] == 1:
+														Accepté
+													$elif v.data['active'] == '0' or v.data['active'] == 0:
+														En Validation
+												$else :
+													-
+											</td>
+										</tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

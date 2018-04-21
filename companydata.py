@@ -84,6 +84,7 @@ class Object():
 			self.data[allObjects.keyid] = int(allObjects.last_id) + 1
 			allObjects.last_id = int(allObjects.last_id) + 1
 		allObjects.elements[str(self.data[allObjects.keyid])] = self
+		self.data[allObjects.keyid] = str(self.data[allObjects.keyid])
 		with open(allObjects.filename, "a") as csvfile:
 			writer = unicodecsv.DictWriter(csvfile, delimiter='\t', fieldnames=allObjects.fields, encoding="utf-8")
 			writer.writerow(self.data)

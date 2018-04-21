@@ -21,7 +21,7 @@ $var email : $mail
 								$for k, v in data.AllRequests.elements.items():
 									$if (data.AllRequests.last_id - int(k)) < 8:
 										<li class="client clearfix">
-											<img src="static/img/stalinou.jpg" class="avatar" alt="Client">
+											<img src="static/img/users$v.data['user']" class="avatar" alt="Client">
 											<div class="client-details">
 												<div class="row">
 													<div class="col-lg-5">
