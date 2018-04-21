@@ -2,7 +2,12 @@ import web
 import useful
 import companydata
 
-
+class Request:
+	def GET(self):
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		return render.request()
 
 class Index:
     def GET(self):
@@ -90,7 +95,8 @@ if __name__ == "__main__":
         '/index','Index',
         '/home','Index',
         '/connection','Connection',
-        '/disconnect', 'Disconnect'
+        '/disconnect', 'Disconnect',
+		'/request', 'Request'
     )
 	app = web.application(urls, globals())
 	app.notfound = notfound
