@@ -39,19 +39,19 @@ $code:
 											</td>
 											<td>$data.AllRoles.elements[v.data['id_role']].data['name']</td>
 
-                                            $if user.data['id_role'] == '1' or user.data['id_role'] == 1:
-                                                <td>
-                                                    $if v.data['active'] == '1' or v.data['active'] == 1:
-                                                        Accepté
-                                                    $elif v.data['active'] == '0' or v.data['active'] == 0:
-                                                        En Validation
-                                                </td>
-                                                <td>
-                                                    $if v.data['active'] == '1' or v.data['active'] == 1:
-                                                        <a href="/user/$k" class="btn btn-default"><i class="fas fa-times"></i></a>
-                                                    $elif v.data['active'] == '0' or v.data['active'] == 0:
-                                                        <a href="/user/$k" class="btn btn-default"><i class="fas fa-check"></i></a>
-                                                </td>
+											$if user.data['id_role'] == '1' or user.data['id_role'] == 1:
+												<td>
+													$if v.data['active'] == '1' or v.data['active'] == 1:
+														Accepté
+													$elif v.data['active'] == '0' or v.data['active'] == 0:
+														En Validation
+												</td>
+												<td>
+													$if v.data['active'] == '1' or v.data['active'] == 1:
+														<a href="/user/$k" class="btn btn-default"><i class="fas fa-times"></i></a>
+													$elif v.data['active'] == '0' or v.data['active'] == 0:
+														<a href="/user/$k" class="btn btn-default"><i class="fas fa-check"></i></a>
+												</td>
 										</tr>
                             </tbody>
                         </table>
