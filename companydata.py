@@ -249,10 +249,16 @@ class AllRequests(AllObjects):
 				print v.data['status']
 	
 	def get_waiting(self):
-		return (self.waiting / float(self.total))* 100
+		if(self.total > 0):
+			return (self.waiting / float(self.total))* 100
+		return 0
 		
 	def get_progress(self):
-		return (self.progress / float(self.total))* 100
+		if(self.total > 0):
+			return (self.progress / float(self.total))* 100
+		return 0
 		
 	def get_solved(self):
-		return (self.solved / float(self.total))* 100
+		if(self.total > 0) :
+			return (self.solved / float(self.total))* 100
+		return 0

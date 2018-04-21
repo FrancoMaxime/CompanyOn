@@ -62,7 +62,8 @@ class Connection:
 		return render.connection()
 	
 	def POST(self):
-		data = web.input()
+		data = web.input(placeImg={})
+		
 		mail = is_connected()
 		if mail is not None:
 			raise web.seeother('/')
@@ -80,6 +81,13 @@ class Connection:
 				user.data['firstname'] = data['_firstname_']
 				user.data['lastname'] = data['_lastname_']
 				user.data['active'] = 1
+				if data['placeImg'] != {}:
+					if web.debug(data['placeImg'].filename)!= '':
+						filepath = web.debug(data['placeImg'].filename).replace('\\', '/')
+						ext = ((filepath.split('/')[-1]).split('.')[-1])
+						fout = open('/static/img/users/'+user.data['id_user'], 'w')
+						fout.write(web.debug(data['placeImg'].value))
+						fout.close()
 				if '_name_' in data:
 					comp = company.AllCompanies.new_object()
 					comp.data['name'] = data['_name_']

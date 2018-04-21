@@ -38,7 +38,7 @@ $var recursive : True
 						<div class="login-header">
 							<h4>Sign In To Your Account</h4>
 						</div>
-						<form method="post" action="" id="loginForm" data-bv-message="This value is not valid"  data-bv-live="enabled" data-bv-container="tooltip"data-bv-submitButtons="#loginSubmit">
+						<form method="post" action="" id="loginForm" enctype="multipart/form-data" data-bv-message="This value is not valid"  data-bv-live="enabled" data-bv-container="tooltip"data-bv-submitButtons="#loginSubmit">
 							<div class="form-group has-feedback">
 								<label class="control-label" for="userName">User Name</label>
 								<input type="text" name="_username_" class="form-control" id="userName" placeholder="User Name" autofocus>
@@ -84,6 +84,11 @@ $var recursive : True
 								<label class="control-label" for="password1">Password</label>
 								<input type="password" name="_password_" class="form-control" id="password1">
 								<i class="fa fa-key form-control-feedback"></i>
+							</div>
+							<div class="form-group row">
+								<label for="inputFile" class="col-sm-6 col-form-label">Votre photo</label>
+								<label class="control-label"></label>
+								<input id="inputFile" name="placeImg" multiple type="file" class="file file-loading" data-allowed-file-extensions='["jpg", "jpeg"]'>
 							</div>
 							<div class="form-group has-feedback">
 								<label class="control-label" for="password1">Company</label>
