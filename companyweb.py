@@ -25,6 +25,7 @@ class Connection:
 	
 	def POST(self):
 		data = web.input()
+		print data.items()
 		mail = is_connected()
 		if mail is not None:
 			raise web.seeother('/')
@@ -32,9 +33,10 @@ class Connection:
 			mail = data['_mail_']
 			time = useful.now()
 			password = useful.encrypt(data['_password_'],time)
-			user = companydata.User()
+			user = company.AllUsers.new_object()
 			test = company.AllUsers.get_user(mail)
 			if user.verify(data) and test == None:
+				print "je passe ici"
 				user.data['mail'] = mail
 				user.data['password'] = password
 				user.data['registration'] = time
@@ -42,7 +44,17 @@ class Connection:
 				user.data['firstname'] = data['_firstname_']
 				user.data['lastname'] = data['_lastname_']
 				user.data['active'] = 1
-				user.save(company)
+				if '_name_' in data:
+					comp = company.AllCompanies.new_object()
+					comp.data['name'] = data['_name_']
+					comp.data['TVA'] = data['_TVA_']
+					comp.data['domain'] = data['_domain_']
+					comp.data['user'] = user.data['id_user']
+					comp.save(company, user)
+					user.data['id_company'] = comp.data['id_company']
+				if 'company' in data:
+					user.data['id_company'] = data['company']
+				user.save(company, user)	
 			return render.connection()
 		elif '_login_'in data and data['_login_'] == "login":
 			test = connexion(data['_username_'], data['_password_'])
@@ -52,14 +64,27 @@ class Connection:
 				company.AllConnectedUsers.add_user(test)
 			raise web.seeother('/')
 			
-				
+class Company:
+	def GET(self):
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		return render.enterprise()
+		
+	def POST(self):
+		data = web.input()
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		elif '_select_'in data and data['_select_'] == "select":
+			pass	
 		
 class Disconnect():
     def GET(self):
         mail = is_connected()
         if mail is not None:
-            companydata.connectedUsers.disconnect(mail)
-        raise web.seeother('/')		
+            company.AllConnectedUsers.disconnect(mail)
+        raise web.seeother('/connection')		
         
 def notfound():
     return web.notfound(render.notfound())
@@ -96,6 +121,7 @@ if __name__ == "__main__":
         '/home','Index',
         '/connection','Connection',
         '/disconnect', 'Disconnect',
+        '/compagny', 'Compagny',
 		'/request', 'Request'
     )
 	app = web.application(urls, globals())
