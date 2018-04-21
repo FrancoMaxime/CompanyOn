@@ -47,7 +47,20 @@ class Connection:
 				company.AllConnectedUsers.add_user(test)
 			raise web.seeother('/')
 			
-				
+class Company:
+	def GET(self):
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		return render.enterprise()
+		
+	def POST(self):
+		data = web.input()
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		elif '_select_'in data and data['_select_'] == "select":
+			pass	
 		
 class Disconnect():
     def GET(self):
@@ -90,7 +103,8 @@ if __name__ == "__main__":
         '/index','Index',
         '/home','Index',
         '/connection','Connection',
-        '/disconnect', 'Disconnect'
+        '/disconnect', 'Disconnect',
+        '/compagny', 'Compagny'
     )
 	app = web.application(urls, globals())
 	app.notfound = notfound

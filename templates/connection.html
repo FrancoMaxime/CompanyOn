@@ -85,6 +85,14 @@ $var recursive : True
 								<input type="password" name="_password_" class="form-control" id="password1">
 								<i class="fa fa-key form-control-feedback"></i>
 							</div>
+							<div class="form-group has-feedback">
+								<label class="control-label" for="password1">Company</label>
+								<select name = "compagny" class="form-control" id="inputSms1">
+									<option value=""></option>
+									$for k in data.AllCompanies.elements.keys():
+										<option value="$k">$data.AllCompagnies.elements[k].data['name']</option>
+								</select>
+							</div>
 							<input type="submit" name="_signup_" value="signup" class="btn btn-danger btn-lg btn-block">
 						</form>
 						<a href="#login">Already have an account? <span class="text-danger">Sign In</span></a>

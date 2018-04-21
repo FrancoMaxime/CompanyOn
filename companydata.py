@@ -81,7 +81,7 @@ class Object():
 
 	def verify(self,data):
 		for k,v in data.items():
-			if v == "":
+			if k != 'company' and v == "":
 				return False
 		return True
 
