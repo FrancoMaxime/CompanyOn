@@ -39,9 +39,15 @@ $var email : $mail
                                                 </div>
                                                 <ul class="icons-nav">
                                                     <li>
-                                                        <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Contact">
-                                                            <i class="fas fa-eye"></i>
-                                                        </a>
+
+                                                        <form method="post">
+                                                            <a href="#" data-toggle="tooltip"  title="" data-original-title="Contact">
+                                                                <i class="fas fa-eye"></i>
+                                                            </a>
+                                                            <button type="submit" name="_validate_" value="validate" class="btn">
+                                                                <i class="fa fa-check"></i>
+                                                            </button>
+                                                        </form>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -86,34 +92,34 @@ $var email : $mail
                         <div class="blog-body">
                             <ul class="clients-list">
                                 $for k, v in data.AllRequests.elements.items():
-                                $if data.AllUsers.elements[v.data['user']].data['mail'] == mail:
-                                <li class="client clearfix">
-                                    <img src="static/img/stalinou.jpg" class="avatar" alt="Client">
-                                    <div class="client-details">
-                                        <div class="row">
-                                            <div class="col-lg-5">
-                                                <p>
-                                                    <span class="name">$data.AllUsers.elements[v.data['user']].data['firstname'] $data.AllUsers.elements[v.data['user']].data['lastname']</span>
-                                                    <span class="email">$data.AllUsers.elements[v.data['user']].data['mail']</span>
-                                                </p>
+                                    $if data.AllUsers.elements[v.data['user']].data['mail'] == mail:
+                                        <li class="client clearfix">
+                                            <img src="static/img/stalinou.jpg" class="avatar" alt="Client">
+                                            <div class="client-details">
+                                                <div class="row">
+                                                    <div class="col-lg-5">
+                                                        <p>
+                                                            <span class="name">$data.AllUsers.elements[v.data['user']].data['firstname'] $data.AllUsers.elements[v.data['user']].data['lastname']</span>
+                                                            <span class="email">$data.AllUsers.elements[v.data['user']].data['mail']</span>
+                                                        </p>
 
-                                            </div>
-                                            <div class="col-lg-5 hidden-xs">
-                                                <p>
-                                                    <span class="question">$v.data['subject']</span>
-                                                </p>
+                                                    </div>
+                                                    <div class="col-lg-5 hidden-xs">
+                                                        <p>
+                                                            <span class="question">$v.data['subject']</span>
+                                                        </p>
 
+                                                    </div>
+                                                </div>
+                                                <ul class="icons-nav">
+                                                    <li>
+                                                        <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Contact">
+                                                            <i class="fas fa-eye"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                        </div>
-                                        <ul class="icons-nav">
-                                            <li>
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Contact">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
+                                        </li>
                             </ul>
                         </div>
                     </div>

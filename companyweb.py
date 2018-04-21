@@ -8,6 +8,14 @@ class Profile:
 		if mail is None:
 			raise web.seeother('/connection')
 		return render.profile(mail)
+	def POST(self):
+		data = web.input()
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		elif'_validate_' in data and data['_validate_'] == 'validate':
+			return True
+
 
 class Request:
 	def GET(self):
