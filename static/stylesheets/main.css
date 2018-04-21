@@ -31,6 +31,22 @@ body {
 }
 
 
+.partners {
+	
+	font-color : white;
+}
+
+.checked {
+  color: red;
+}
+
+textarea {
+  resize: none;
+}
+
+
+
+
 
 a {
   color: #000000;
