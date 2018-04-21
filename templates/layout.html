@@ -120,7 +120,7 @@ $if content.recursive == 'False':
 												<div class="details">
 													<p>J'ai un problème !</p>
 												</div>
-												<span class="label label-danger"></span>
+												<span class="label label-danger request"></span>
 											</li>
 											<li></li>
 										</ul>
@@ -160,8 +160,56 @@ $if content.recursive == 'False':
 							</div>
 							<!-- Dashboard Wrapper ends -->
 
+	<div id="modal-edit" class="modal fade" >
+		<div class="modal-dialog" >
+			<div class="modal-content" style="background-color:aliceblue" id="modal_body">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="blog">
+							<div class="blog-header">
+								<h5 class="blog-title">Créer une requête</h5>
+							</div>
+							<div class="blog-body">
+								<form method="post" action="" id="requestForm" data-bv-message="This value is not valid"   data-bv-submitButtons="#loginSubmit">
+									<div class="form-group has-feedback">
+										<label class="control-label" >Question</label>
+										<input type="text" name="_username_" class="form-control" autofocus>
+									</div>
+									<div class="form-group has-feedback">
+										<label class="control-label">Domaine de la requête</label>
+										<select class="form-control">
+											<option>Select large</option>
+											<option>1</option>
+											<option>2</option>
+										</select>
+									</div>
+									<div class="form-group has-feedback">
+										<label class="control-label">Brève description du problème</label>
+										<textarea class="form-control" rows="4"></textarea>
+									</div>
+									<input type="submit" name="_request_" value="Valider" class="btn btn-danger btn-lg btn-block">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<script type="text/javascript">
+
+        $$(document).ready(function(){
 
 
+            $$(".details").on("click", function(e){
+                $$('#modal-edit').modal('show');
+            });
+
+
+        });
+
+	</script>
 
 
 

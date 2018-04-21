@@ -1,5 +1,44 @@
 $def with ()
-$var recursive : False
-<div>
-ERROR 404 : Page not found
+$var recursive : True
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/static/images/companyonicon.png" /><strong></strong>
+    <title>CompanyOn</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="static/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- Main CSS -->
+    <link href="static/stylesheets/main.css" rel="stylesheet" media="screen">
+
+    <!-- Font Awesome -->
+    <link href="static/stylesheets/fontawesome-all.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="static/stylesheets/error.css" rel="stylesheet" media="screen">
+
+
+</head>
+
+<body>
+
+<div style="margin-top:-250px" id="page-wrapper">
+    <div class="error center-align-text">
+        <h1 class="error-heading">404<i>!</i></h1>
+        <h2 class="text-danger">Oops</h2>
+        <h3>Page non trouvée</h3>
+        <p>Il semblerait que vous vous soyez trompé de chemin !</p>
+        <a href="/index" class="btn btn-success">Retour à l'envoyeur</a>
+    </div>
 </div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="static/javascripts/jquery.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="static/javascripts/bootstrap.min.js"></script>
+
+</body>
+</html>
