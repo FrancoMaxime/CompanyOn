@@ -10,7 +10,11 @@ class User:
 		user = company.AllUsers.get_user(mail)
 		confirm = company.AllUsers.elements[id]
 		if user.data['id_company'] == confirm.data['id_company'] and user.data['id_role'] == '1':
-			confirm.data['active'] = '1'
+			if confirm.data['active'] == '1':
+				confirm.data['active'] = '0'
+			else:
+				confirm.data['active'] = '1'
+
 			confirm.save(company, user)
 		raise web.seeother('/company')
 
@@ -88,6 +92,7 @@ class Request_Detail:
 			request = company.AllRequests.elements[data['_requestId_']]
 			request.data['helper'] = user.data['id_user']
 			request.data['status'] = 2
+			user = company.AllUsers.elements[request.data['user']]
 			request.save(company,user)
 		raise web.seeother('/index')
 

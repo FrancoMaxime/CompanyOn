@@ -31,9 +31,20 @@ $var email : $mail
 														</p>
 
 													</div>
-													<div class="col-lg-5 hidden-xs">
+													<div class="col-lg-3 hidden-xs">
 														<p>
 															<span class="question">$v.data['subject']</span>
+														</p>
+
+													</div>
+													<div class="col-lg-3">
+														<p>
+															$if v.data['status'] == '1' or v.data['status'] == 1:
+																<span class="question" style="color:red">Non résolus</span>
+															$elif v.data['status'] == '2' or v.data['status'] == 2:
+																<span class="question" style="color:orange">En cours de résolution</span>
+															$elif v.data['status'] == '3' or v.data['status'] == 3:
+																<span class="question" style="color:green">Résolus</span>
 														</p>
 
 													</div>

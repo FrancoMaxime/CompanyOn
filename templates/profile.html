@@ -29,7 +29,7 @@ $var email : $mail
                                                         </p>
 
                                                     </div>
-                                                    <div class="col-lg-5 hidden-xs">
+                                                    <div class="col-lg-5">
                                                         <p>
                                                             $if v.data['status'] == '1' or v.data['status'] == 1:
                                                                 <span class="question" style="color:red">Non résolus</span>
@@ -86,6 +86,23 @@ $var email : $mail
                                             <h4>$data.AllUsers.get_user(mail).data['lastname'] $data.AllUsers.get_user(mail).data['firstname']</h4>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Score</label>
+                                        <div class="col-sm-7">
+                                            $if data.AllUsers.get_user(mail).data['rating'] == "":
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            $else:
+                                                $for i in range(1, 5):
+                                                    $if data.AllUsers.get_user(mail).data['rating'] >= i:
+                                                        <i class="fas fa-star" style="color:darkorange"></i>
+                                                    $else:
+                                                        <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -99,6 +116,7 @@ $var email : $mail
                         <div class="blog-body">
                             <ul class="clients-list">
                                 $for k, v in data.AllRequests.elements.items():
+
                                     $if data.AllUsers.elements[v.data['user']].data['mail'] != mail and (v.data['status'] == 3 or v.data['status'] == '3') and v.data['helper'] ==  data.AllUsers.get_user(mail).data['id_user']:
                                         <li class="client clearfix">
                                             <img src="static/img/users$v.data['user']" class="avatar" alt="Client">
