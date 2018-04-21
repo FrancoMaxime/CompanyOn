@@ -98,8 +98,12 @@ class Connection:
 					comp.data['user'] = user.data['id_user']
 					comp.save(company, user)
 					user.data['id_company'] = comp.data['id_company']
+					user.data['id_role'] = '1'
+					user.data['active'] = '1'
 				if 'company' in data :
 					user.data['id_company'] = data['company']
+					user.data['id_role'] = '2'
+					user.data['active'] = '0'
 				user.save(company, user)
 			else:
 				company.AllUsers.last_id -= 1	
