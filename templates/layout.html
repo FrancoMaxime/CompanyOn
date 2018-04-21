@@ -50,7 +50,7 @@ $if content.recursive == 'False':
 					</a>
 					<ul class="dropdown-menu sm user-settings">
 						<li>
-							<a href="profile.html" data-original-title="" title=""><i class="far fa-smile"></i>Mon profil</a>
+							<a href="/profile" data-original-title="" title=""><i class="far fa-smile"></i>Mon profil</a>
 						</li>
 
 						<hr class="less-margin">
@@ -175,13 +175,19 @@ $if content.recursive == 'False':
 										<label class="control-label" >Question</label>
 										<input type="text" name="_subject_" class="form-control" autofocus>
 									</div>
-									<div class="form-group has-feedback">
+									<div class="form-group has-feedback sel">
 										<label class="control-label">Domaine de la requête</label>
 										<select name ="_domain_" class="form-control">
-											<option>Select large</option>
-											<option>1</option>
-											<option>2</option>
+											$for k, v in data.AllSpecialities.elements.items():
+												<option>$v.data['name']</option>
 										</select>
+									</div>
+									<div class="spec"><a href="#register">Domaine manquant ?<span class="text-danger">Ajoutez le </span></a><br/><br/></div>
+
+									<div class="form-group has-feedback hide addspec">
+										<label class="control-label" >Domaine</label>
+										<input type="text" name="_name_" class="form-control" autofocus>
+										<div class="backspec"><a href="#register"><span class="text-danger">Annuler</span></a><br/><br/></div>
 									</div>
 									<div class="form-group has-feedback">
 										<label class="control-label">Brève description du problème</label>
@@ -204,6 +210,18 @@ $if content.recursive == 'False':
 
             $$(".details").on("click", function(e){
                 $$('#modal-edit').modal('show');
+            });
+
+            $$(".spec").on("click", function(e){
+                $$('.spec').addClass('hide');
+                $$('.addspec').removeClass('hide');
+                $$('.sel').addClass('hide');
+            });
+
+            $$(".backspec").on("click", function(e){
+                $$('.spec').removeClass('hide');
+                $$('.addspec').addClass('hide');
+                $$('.sel').removeClass('hide');
             });
 
 

@@ -2,6 +2,13 @@ import web
 import useful
 import companydata
 
+class Profile:
+	def GET(self):
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		return render.profile(mail)
+
 class Request:
 	def GET(self):
 		mail = is_connected()
@@ -10,7 +17,6 @@ class Request:
 		return render.request(mail)
 	
 	def POST(self):
-		print "ta mere"
 		data = web.input()
 		mail = is_connected()
 		if mail is None:
@@ -18,9 +24,19 @@ class Request:
 		elif'_request_' in data and data['_request_'] == 'request':
 			user = company.AllUsers.get_user(mail)
 			request = company.AllRequests.new_object()
+			id = -1
+			if '_name_' in data and data['_name_'] != "":
+				time = useful.now()
+				speciality = company.AllSpecialities.new_object()
+				speciality.data['begin'] = time
+				speciality.data['name'] = data['_name_']
+				speciality.save(company,user)
+				id = speciality.data['id_speciality']
 			if request.verify(data):
+				if id == -1:
+					id = data['_domain_']
 				request.data['subject'] = data['_subject_']
-				request.data['id_domain'] = data['_domain_']
+				request.data['id_domain'] = id
 				request.data['remark'] = data['_remark_']
 				request.save(company, user)
 			else:
@@ -141,7 +157,8 @@ if __name__ == "__main__":
         '/connection','Connection',
         '/disconnect', 'Disconnect',
         '/compagny', 'Compagny',
-		'/request', 'Request'
+		'/request', 'Request',
+		'/profile', 'Profile'
     )
 	app = web.application(urls, globals())
 	app.notfound = notfound

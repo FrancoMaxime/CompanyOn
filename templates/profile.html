@@ -1,0 +1,70 @@
+$def with (mail)
+$var recursive : False
+$var email : $mail
+<div class="top-bar">
+    <div class="page-title">
+        Profil
+    </div>
+</div>
+<div class="spacer">
+    <div class="main-container">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="blog">
+                        <div class="blog-header">
+                            <h5 class="blog-title">About</h5>
+                        </div>
+                        <div class="blog-body center-align-text">
+                            <img src="static/img/stalinou.jpg" alt="User" class="img-responsive img-circle auto-margin img-xs">
+                            <hr class="less-margin">
+                            <div class="blog-content">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe eveniet hic eaque neque inventore ex fugit...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="blog blog-danger">
+                        <div class="blog-header">
+                            <h5 class="blog-title">Mes requêtes</h5>
+                        </div>
+                        <div class="blog-body">
+                            <ul class="clients-list">
+                                $for k, v in data.AllRequests.elements.items():
+                                    $if data.AllUsers.elements[v.data['user']].data['mail'] == mail:
+                                        <li class="client clearfix">
+                                            <img src="static/img/stalinou.jpg" class="avatar" alt="Client">
+                                            <div class="client-details">
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <p>
+                                                            <span class="name">$data.AllUsers.elements[v.data['user']].data['firstname'] $data.AllUsers.elements[v.data['user']].data['lastname']</span>
+                                                            <span class="email">$data.AllUsers.elements[v.data['user']].data['mail']</span>
+                                                        </p>
+
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <p>
+                                                            <span class="question">$v.data['subject']</span>
+                                                        </p>
+
+                                                    </div>
+                                                </div>
+                                                <ul class="icons-nav">
+                                                    <li>
+                                                        <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Contact">
+                                                            <i class="fas fa-eye"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
