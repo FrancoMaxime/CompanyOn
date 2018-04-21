@@ -1,4 +1,4 @@
-$def with ()
+$def with (error)
 $var recursive : True
 <html lang="en">
 <head>
@@ -38,6 +38,10 @@ $var recursive : True
 						<div class="login-header">
 							<h4>Sign In To Your Account</h4>
 						</div>
+						$if error != "":
+							<div class="login-header">
+								<h4>$error</h4>
+							</div>
 						<form method="post" action="" id="loginForm" enctype="multipart/form-data" data-bv-message="This value is not valid"  data-bv-live="enabled" data-bv-container="tooltip"data-bv-submitButtons="#loginSubmit">
 							<div class="form-group has-feedback">
 								<label class="control-label" for="userName">User Name</label>

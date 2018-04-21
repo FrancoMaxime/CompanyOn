@@ -91,7 +91,7 @@ class Connection:
 		mail = is_connected()
 		if mail is not None:
 			raise web.seeother('/index')
-		return render.connection()
+		return render.connection('')
 	
 	def POST(self):
 		data = web.input(placeImg={})
@@ -139,13 +139,16 @@ class Connection:
 				user.save(company, user)
 			else:
 				company.AllUsers.last_id -= 1	
-			return render.connection()
+			return render.connection("")
 		elif '_login_'in data and data['_login_'] == "login":
 			test = connexion(data['_username_'], data['_password_'])
-			if test != None :
+			if test != None and test.data['active'] == '1' :
 				infoCookie = data['_username_'] + ',' + test.data['password']
 				update_cookie(infoCookie)
 				company.AllConnectedUsers.add_user(test)
+			elif test != None and test.data['active'] == '0':
+				print 'teetetete'
+				return render.connection('Compte en attente d activation')
 			raise web.seeother('/')
 			
 class Company:
