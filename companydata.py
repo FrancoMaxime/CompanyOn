@@ -263,3 +263,20 @@ class AllRequests(AllObjects):
 		if(self.total > 0) :
 			return (self.solved / float(self.total))* 100
 		return 0
+
+class Sensor(Object):
+	def __init__(self):
+		Object.__init__(self)
+		
+class AllSensors(AllObjects):
+	def __init__(self, config):
+		AllObjects.__init__(self, config)
+		self.fields = ['begin','id_sensors','name', 'remark','location', 'user']
+		self.filename = 'csv/sensors.csv'
+		self.keyid = 'id_sensors'
+		
+	def new_object(self):
+		spec = Sensor()
+		spec.data[self.keyid] = str(self.last_id +1)
+		self.last_id += 1
+		return spec
