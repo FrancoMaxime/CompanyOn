@@ -27,6 +27,8 @@ class CompagnyOn():
 			return self.AllRoles
 		elif object.__class__.__name__ == Speciality.__name__ :
 			return self.AllSpecialities
+		elif object.__class__.__name__ == Request.__name__ :
+			return self.AllRequests
 
 class AllObjects():
 	def __init__(self, config):
@@ -160,7 +162,7 @@ class AllSpecialities(AllObjects):
 		self.keyid = 'id_speciality'
 		
 	def new_object(self):
-		spec = Role()
+		spec = Speciality()
 		spec.data[self.keyid] = self.last_id +1
 		self.last_id += 1
 		return spec
@@ -227,7 +229,7 @@ class AllRequests(AllObjects):
 		self.waiting = 0
 		
 	def new_object(self):
-		spec = Role()
+		spec = Request()
 		spec.data[self.keyid] = self.last_id +1
 		self.last_id += 1
 		return spec

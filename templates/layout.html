@@ -170,14 +170,14 @@ $if content.recursive == 'False':
 								<h5 class="blog-title">Créer une requête</h5>
 							</div>
 							<div class="blog-body">
-								<form method="post" action="" id="requestForm" data-bv-message="This value is not valid"   data-bv-submitButtons="#loginSubmit">
+								<form method="post" action="/request" id="requestForm" data-bv-message="This value is not valid"   data-bv-submitButtons="#loginSubmit">
 									<div class="form-group has-feedback">
 										<label class="control-label" >Question</label>
-										<input type="text" name="_username_" class="form-control" autofocus>
+										<input type="text" name="_subject_" class="form-control" autofocus>
 									</div>
 									<div class="form-group has-feedback">
 										<label class="control-label">Domaine de la requête</label>
-										<select class="form-control">
+										<select name ="_domain_" class="form-control">
 											<option>Select large</option>
 											<option>1</option>
 											<option>2</option>
@@ -185,9 +185,9 @@ $if content.recursive == 'False':
 									</div>
 									<div class="form-group has-feedback">
 										<label class="control-label">Brève description du problème</label>
-										<textarea class="form-control" rows="4"></textarea>
+										<textarea name = "_remark_" class="form-control" rows="4"></textarea>
 									</div>
-									<input type="submit" name="_request_" value="Valider" class="btn btn-danger btn-lg btn-block">
+									<input type="submit" name="_request_" value="request" class="btn btn-danger btn-lg btn-block">
 								</form>
 							</div>
 						</div>

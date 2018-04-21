@@ -8,6 +8,25 @@ class Request:
 		if mail is None:
 			raise web.seeother('/connection')
 		return render.request(mail)
+	
+	def POST(self):
+		print "ta mere"
+		data = web.input()
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		elif'_request_' in data and data['_request_'] == 'request':
+			user = company.AllUsers.get_user(mail)
+			request = company.AllRequests.new_object()
+			if request.verify(data):
+				request.data['subject'] = data['_subject_']
+				request.data['id_domain'] = data['_domain_']
+				request.data['remark'] = data['_remark_']
+				request.save(company, user)
+			else:
+				company.AllRequests.last_id -= 1
+			
+		return render.index(mail)
 
 class Index:
     def GET(self):
@@ -25,7 +44,6 @@ class Connection:
 	
 	def POST(self):
 		data = web.input()
-		print data.items()
 		mail = is_connected()
 		if mail is not None:
 			raise web.seeother('/')
