@@ -83,7 +83,7 @@ class Connection:
 	
 	def POST(self):
 		data = web.input(placeImg={})
-		
+		print data.items()
 		mail = is_connected()
 		if mail is not None:
 			raise web.seeother('/')
@@ -102,13 +102,15 @@ class Connection:
 				user.data['lastname'] = data['_lastname_']
 				user.data['active'] = 1
 				if data['placeImg'] != {}:
-					if web.debug(data['placeImg'].filename)!= '':
-						filepath = web.debug(data['placeImg'].filename).replace('\\', '/')
+					print "fils de pute de ta race"
+					if data.placeImg.filename != '':
+						print "mongolooooo"
+						filepath = data.placeImg.filename.replace('\\', '/')
 						ext = ((filepath.split('/')[-1]).split('.')[-1])
-						fout = open('/static/img/users/'+user.data['id_user'], 'w')
-						fout.write(web.debug(data['placeImg'].value))
+						fout = open('./static/img/users' + str(user.data['id_user']), 'w')
+						fout.write(data.placeImg.file.read())
 						fout.close()
-				if '_name_' in data:
+				if '_name_' in data and data['_name_'] != "":
 					comp = company.AllCompanies.new_object()
 					comp.data['name'] = data['_name_']
 					comp.data['TVA'] = data['_TVA_']
@@ -116,7 +118,7 @@ class Connection:
 					comp.data['user'] = user.data['id_user']
 					comp.save(company, user)
 					user.data['id_company'] = comp.data['id_company']
-				if 'company' in data:
+				if 'company' in data :
 					user.data['id_company'] = data['company']
 				user.save(company, user)
 			else:
