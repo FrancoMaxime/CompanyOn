@@ -8,11 +8,13 @@ class CompagnyOn():
 		self.AllCompanies=AllCompanies(self)
 		self.AllRoles = AllRoles(self)
 		self.AllConnectedUsers = AllConnectedUsers()
+		self.AllSpecialities = AllSpecialities(self)
 		
 	def load(self):
 		self.AllUsers.load()
 		self.AllCompanies.load()
 		self.AllRoles.load()
+		self.AllSpecialities.load()
 		
 	def find_all_from_object(self, object):
 		if object.__class__.__name__ == User.__name__:
@@ -87,7 +89,7 @@ class Object():
 class AllUsers(AllObjects):
 	def __init__(self, config):
 		AllObjects.__init__(self, config)
-		self.fields = ['begin','id_user','mail','password','firstname','lastname','id_company', 'remark','phonenumber','id_role','active', 'user', 'rating', 'registration']
+		self.fields = ['begin','id_user','mail','password','firstname','lastname','id_company', 'remark','phonenumber','id_role','active', 'user', 'rating', 'registration', 'id_speciality']
 		self.filename = 'csv/users.csv'
 		self.keyid = 'id_user'
 		
@@ -126,6 +128,20 @@ class AllRoles(AllObjects):
 		self.fields = ['begin','id_role','name', 'TVA', 'remark', 'domain', 'user']
 		self.filename = 'csv/roles.csv'
 		self.keyid = 'id_role'
+		
+	def new_object(self):
+		return Role()
+				
+class Speciality(Object):
+	def __init__(self):
+		Object.__init__(self)
+		
+class AllSpecialities(AllObjects):
+	def __init__(self, config):
+		AllObjects.__init__(self, config)
+		self.fields = ['begin','id_speciality','name', 'remark', 'user']
+		self.filename = 'csv/specialities.csv'
+		self.keyid = 'id_speciality'
 		
 	def new_object(self):
 		return Role()
