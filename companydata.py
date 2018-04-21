@@ -19,10 +19,12 @@ class CompagnyOn():
 	def find_all_from_object(self, object):
 		if object.__class__.__name__ == User.__name__:
 			return self.AllUsers
-		elif object.__class__.__name__ == Compagny.__class__ :
+		elif object.__class__.__name__ == Company.__name__ :
 			return self.AllCompanies
-		elif object.__class__.__name__ == Role.__class__ :
+		elif object.__class__.__name__ == Role.__name__ :
 			return self.AllRoles
+		elif object.__class__.__name__ == Speciality.__name__ :
+			return self.AllSpecialities
 
 class AllObjects():
 	def __init__(self, config):
@@ -68,7 +70,7 @@ class Object():
 	def save(self, configuration, anUser=None):
 		self.data["begin"] = useful.now()
 		if anUser != None:
-			self.data["user"] = anUser.data['u_id']
+			self.data["user"] = anUser.data['id_user']
 		allObjects = configuration.find_all_from_object(self)
 		if (not allObjects.keyid in self.data) or (self.data[allObjects.keyid] == ""):
 			self.data[allObjects.keyid] = int(allObjects.last_id) + 1
@@ -94,7 +96,10 @@ class AllUsers(AllObjects):
 		self.keyid = 'id_user'
 		
 	def new_object(self):
-		return User()
+		user = User()
+		user.data['id_user'] = self.last_id +1
+		self.last_id += 1
+		return user
 	
 	def get_user(self, mail):
 		for myId, user in self.elements.items():
@@ -116,7 +121,10 @@ class AllCompanies(AllObjects):
 		self.keyid = 'id_company'
 		
 	def new_object(self):
-		return Company()
+		comp = Company()
+		comp.data['id_company'] = self.last_id +1
+		self.last_id += 1
+		return comp
 				
 class Company(Object):
 	def __init__(self):
@@ -130,7 +138,10 @@ class AllRoles(AllObjects):
 		self.keyid = 'id_role'
 		
 	def new_object(self):
-		return Role()
+		role = Role()
+		role.data['id_role'] = self.last_id +1
+		self.last_id += 1
+		return role
 				
 class Speciality(Object):
 	def __init__(self):
@@ -144,7 +155,10 @@ class AllSpecialities(AllObjects):
 		self.keyid = 'id_speciality'
 		
 	def new_object(self):
-		return Role()
+		spec = Role()
+		spec.data['id_role'] = self.last_id +1
+		self.last_id += 1
+		return spec
 				
 class Role(Object):
 	def __init__(self):

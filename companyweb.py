@@ -20,6 +20,7 @@ class Connection:
 	
 	def POST(self):
 		data = web.input()
+		print data.items()
 		mail = is_connected()
 		if mail is not None:
 			raise web.seeother('/')
@@ -27,9 +28,10 @@ class Connection:
 			mail = data['_mail_']
 			time = useful.now()
 			password = useful.encrypt(data['_password_'],time)
-			user = companydata.User()
+			user = company.AllUsers.new_object()
 			test = company.AllUsers.get_user(mail)
 			if user.verify(data) and test == None:
+				print "je passe ici"
 				user.data['mail'] = mail
 				user.data['password'] = password
 				user.data['registration'] = time
@@ -37,7 +39,17 @@ class Connection:
 				user.data['firstname'] = data['_firstname_']
 				user.data['lastname'] = data['_lastname_']
 				user.data['active'] = 1
-				user.save(company)
+				if '_name_' in data:
+					comp = company.AllCompanies.new_object()
+					comp.data['name'] = data['_name_']
+					comp.data['TVA'] = data['_TVA_']
+					comp.data['domain'] = data['_domain_']
+					comp.data['user'] = user.data['id_user']
+					comp.save(company, user)
+					user.data['id_company'] = comp.data['id_company']
+				if 'company' in data:
+					user.data['id_company'] = data['company']
+				user.save(company, user)	
 			return render.connection()
 		elif '_login_'in data and data['_login_'] == "login":
 			test = connexion(data['_username_'], data['_password_'])

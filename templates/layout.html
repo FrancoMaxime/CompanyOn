@@ -12,7 +12,7 @@ $if content.recursive == 'False':
 		<link rel="stylesheet" href="/static/stylesheets/fontawesome-all.min.css">
 		<link rel="stylesheet" href="/static/stylesheets/companyon.css">
 
-		<link rel="icon" type="image/png" href="/static/images/logobouftoolsmini.png" /><strong></strong>
+		<link rel="icon" type="image/png" href="/static/images/companyonicon.png" /><strong></strong>
 
 	</head>
 
@@ -42,21 +42,29 @@ $if content.recursive == 'False':
 						<i class="fa fa-reorder"></i>
 					</a>
 				</li>
-				<li class="list-box hidden-xs">
-					<a id="drop1" href="https://www.facebook.com/Bouftools/" role="button" target="_blank">
-						<i class="fa fa-facebook " aria-hidden="true"></i>
+				<li class="list-box user-profile hidden-xs">
+					<a id="drop4" href="#" class="user-avtar animated rubberBanddropdown-toggle" data-toggle="dropdown" data-original-title="" title="">
+						<img src="img/user4.jpg" alt="user avatar">
+						<span class="user-name">Mr. Willams <i class="fa fa-angle-down"></i></span>
 					</a>
-				</li>
-				<li class="list-box hidden-xs">
-					<a id="drop1" href="https://twitter.com/bouftools" role="button" target="_blank">
-						<i class="fa fa-twitter fa-5x"></i>
-					</a>
-				</li>
-				<li class="list-box hidden-xs">
-					<a href="mailto:bouftools@gmail.com" class="user-avtar animated">
-						<i class="fa fa-envelope fa-5x"></i>
-					</a>
-
+					<ul class="dropdown-menu sm user-settings">
+						<li>
+							<a href="profile.html" data-original-title="" title=""><i class="far fa-smile"></i>Mon profil</a>
+						</li>
+						<li>
+							<a href="#" data-original-title="" title=""> <i class="fa fa-bell-o"></i> Messages</a>
+						</li>
+						<li>
+							<a href="profile.html" data-original-title="" title=""> <i class="fa fa-calendar"></i> Appointments</a>
+						</li>
+						<hr class="less-margin">
+						<li>
+							<a href="#" data-original-title="" title=""> <i class="fa fa-sun-o"></i> Account Settings</a>
+						</li>
+						<li>
+							<a href="login.html" data-original-title="" title=""> <i class="fa fa-sign-out"></i> Logout</a>
+						</li>
+					</ul>
 				</li>
 
 
@@ -100,121 +108,12 @@ $if content.recursive == 'False':
 											<ul>
 										<li>
 											<a href='/artisanat/bijoutier'>
-												<i class="fa fa-diamond"></i>
-												<span>Bijoutier</span>
+												<i class="fas fa-users"></i>
+												<span>Employés</span>
 											</a>
+
 										</li>
-										<li>
-											<a href='/artisanat/bricoleur'>
-												<i class="fa fa-key"></i>
-												<span>Bricoleur</span>
-											</a>
-										</li>
-										<li>
-											<a href='/artisanat/cordonnier'>
-												<i class="fa fa-scissors"></i>
-												<span>Cordonnier</span>
-											</a>
-										</li>
-										<li>
-											<a href='/artisanat/faconneur'>
-												<i class="fa fa-shield"></i>
-												<span>Façonneur</span>
-											</a>
-										</li>
-										<li>
-											<a href='/artisanat/forgeron'>
-												<i class="fa fa-gavel"></i>
-												<span>Forgeron</span>
-											</a>
-										</li>
-										<li>
-											<a href='/artisanat/sculpteur'>
-												<i class="fa fa-magic"></i>
-												<span>Sculpteur</span>
-											</a>
-										</li>
-										<li>
-											<a href='/artisanat/tailleur'>
-												<i class="fa fa-shopping-bag"></i>
-												<span>Tailleur</span>
-											</a>
-										</li>
-									</ul>
-									</li>
-									<li class='has-sub'>
-										<a href='##'>
-											<i class="fa fa-flask"></i>
-											<span>Récolte</span>
-										</a>
-										<ul>
-									<li>
-										<a href='/recolte/alchimiste'>
-											<i class="fa fa-flask"></i>
-											<span>Alchimiste</span>
-										</a>
-									</li>
-									<li>
-										<a href='/recolte/bucheron'>
-											<i class="fa fa-tree"></i>
-											<span>Bûcheron</span>
-										</a>
-									</li>
-									<li>
-										<a href="/recolte/chasseur">
-											<i class="fa fa-paw"></i>
-											<span>Chasseur</span>
-										</a>
-									</li>
-									<li>
-										<a href='/recolte/mineur'>
-											<i class="fa fa-bomb"></i>
-											<span>Mineur</span>
-										</a>
-									</li>
-									<li>
-										<a href='/recolte/paysan'>
-											<i class="fa fa-cutlery"></i>
-											<span>Paysan</span>
-										</a>
-									</li>
-									<li>
-										<a href='/recolte/poissonier'>
-											<i class="fa fa-anchor"></i>
-											<span>Poissonier</span>
-										</a>
-									</li>
-									</ul>
-									</li>
-									<li class='has-sub' >
-										<a href='##'>
-											<i class="fa fa-cubes"></i>
-											<span>Divers</span>
-										</a>
-										<ul>
-									<li>
-										<a href='/diver/ressource'>
-											<i class="fa fa-cube"></i>
-											<span>Ressources</span>
-										</a>
-									</li>
-									</ul>
-									</li>
-									<li class='has-sub' >
-										<a href='##'>
-											<i class="fa fa-cog"></i>
-											<span>Outils</span>
-										</a>
-										<ul>
-									<li>
-										<a href='/outil/brisage'>
-											<i class="fa fa-book"></i>
-											<span>Brisages</span>
-										</a>
-									</li>
-									</ul>
-									</li>
-									</ul>
+
 								</div>
 								<!-- Menu End -->
 								<div class="freebies">
@@ -270,29 +169,35 @@ $if content.recursive == 'False':
 							<!-- Left sidebar ends -->
 
 							<!-- Dashboard Wrapper starts -->
+	<script src="/static/javascripts/jquery.js"></script>
+	<script src="/static/javascripts/bootstrap.min.js"></script>
+	<script src="/static/javascripts/sparkline.js"></script>
+	<script src="/static/javascripts/jquery.scrollUp.js"></script>
+	<script src="/static/javascripts/moment.js"></script>
+	<script src="/static/javascripts/bootstrap-notify.min.js"></script>
+	<script src="/static/javascripts/custom.js"></script>
 							<div class="dashboard-wrapper">
 
 
 
 								<!-- Top Bar starts -->
+								<div class="spacer">
+									<div class="main-container">
+										<div class="container-fluid">
+											$:content
+										</div>
+									</div>
+								</div>
 
-								$:content
 
 								<!-- Main Container ends -->
 
 								<!-- Footer starts -->
 								<footer>
 									Copyright 2018 CompanyOn.
-
 								</footer>
 								<!-- Footer ends -->
-								<script src="/static/javascripts/jquery.js"></script>
-								<script src="/static/javascripts/bootstrap.min.js"></script>
-								<script src="/static/javascripts/sparkline.js"></script>
-								<script src="/static/javascripts/jquery.scrollUp.js"></script>
-								<script src="/static/javascripts/moment.js"></script>
-								<script src="/static/javascripts/bootstrap-notify.min.js"></script>
-								<script src="/static/javascripts/custom.js"></script>
+
 
 							</div>
 							<!-- Dashboard Wrapper ends -->
