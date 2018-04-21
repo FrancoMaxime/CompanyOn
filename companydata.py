@@ -83,7 +83,7 @@ class Object():
 			print "sa bug sa mere la pute"
 			self.data[allObjects.keyid] = int(allObjects.last_id) + 1
 			allObjects.last_id = int(allObjects.last_id) + 1
-		allObjects.elements[self.data[allObjects.keyid]] = self
+		allObjects.elements[str(self.data[allObjects.keyid])] = self
 		with open(allObjects.filename, "a") as csvfile:
 			writer = unicodecsv.DictWriter(csvfile, delimiter='\t', fieldnames=allObjects.fields, encoding="utf-8")
 			writer.writerow(self.data)
@@ -222,7 +222,7 @@ class Request(Object):
 class AllRequests(AllObjects):
 	def __init__(self, config):
 		AllObjects.__init__(self, config)
-		self.fields = ['begin','id_request','subject','id_domain', 'remark', 'status' ,'user']
+		self.fields = ['begin','id_request','subject','id_domain', 'remark', 'status' ,'user', 'helper']
 		self.filename = 'csv/requests.csv'
 		self.keyid = 'id_request'
 		self.solved = 0

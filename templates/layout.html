@@ -179,7 +179,7 @@ $if content.recursive == 'False':
 										<label class="control-label">Domaine de la requête</label>
 										<select name ="_domain_" class="form-control">
 											$for k, v in data.AllSpecialities.elements.items():
-												<option>$v.data['name']</option>
+											<option value="$v.data['id_speciality']">$v.data['name']</option>
 										</select>
 									</div>
 									<div class="spec"><a href="#register">Domaine manquant ?<span class="text-danger">Ajoutez le </span></a><br/><br/></div>
@@ -203,6 +203,14 @@ $if content.recursive == 'False':
 
 		</div>
 	</div>
+	<div id="modal-view" class="modal fade" >
+		<div class="modal-dialog" >
+			<div class="modal-content" style="background-color:aliceblue" id="ref">
+
+			</div>
+
+		</div>
+	</div>
 	<script type="text/javascript">
 
         $$(document).ready(function(){
@@ -222,6 +230,15 @@ $if content.recursive == 'False':
                 $$('.spec').removeClass('hide');
                 $$('.addspec').addClass('hide');
                 $$('.sel').removeClass('hide');
+            });
+
+            $$(".eye").on("click", function(e){
+
+                var id = $$(this).data('id');
+                var url = "/request/"+id;
+                $$('#modal-view').find('#ref').load(url);
+                $$('#modal-view').modal('show');
+                return false;
             });
 
 
