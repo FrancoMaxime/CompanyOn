@@ -73,10 +73,12 @@ class Object():
 		if (not allObjects.keyid in self.data) or (self.data[allObjects.keyid] == ""):
 			self.data[allObjects.keyid] = int(allObjects.last_id) + 1
 			allObjects.last_id = int(allObjects.last_id) + 1
+		allObjects.elements[self.data[allObjects.keyid]] = self
 		with open(allObjects.filename, "a") as csvfile:
 			writer = unicodecsv.DictWriter(csvfile, delimiter='\t', fieldnames=allObjects.fields, encoding="utf-8")
 			writer.writerow(self.data)
 		return self
+
 	def verify(self,data):
 		for k,v in data.items():
 			if v == "":
