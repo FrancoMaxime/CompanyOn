@@ -17,71 +17,35 @@ $var recursive : False
 						</div>
 						<div class="blog-body">
 							<ul class="clients-list">
-								<li class="client clearfix">
-									<img src="static/img/stalinou.jpg" class="avatar" alt="Client">
-									<div class="client-details">
-										<p>
-											<span class="name">Peter</span>
-											<span class="email">mail.smith@mail.ro</span>
-										</p>
-										<ul class="icons-nav">
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Contact">
-													<i class="fas fa-eye"></i>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</li>
-								<li class="client clearfix">
-									<img src="static/img/stalinou.jpg" class="avatar" alt="Client">
-									<div class="client-details">
-										<p>
-											<span class="name">Willims</span>
-											<span class="email">id.will@mail.io</span>
-										</p>
-										<ul class="icons-nav">
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Contact">
-													<i class="fas fa-eye"></i>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</li>
-								<li class="client clearfix">
-									<img src="static/img/stalinou.jpg" class="avatar" alt="Client">
-									<div class="client-details">
-										<p>
-											<span class="name">Henreque</span>
-											<span class="email">henrq@mail.ro</span>
-										</p>
-										<ul class="icons-nav">
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Contact">
-													<i class="fas fa-eye"></i>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</li>
-								<li class="client clearfix">
-									<img src="static/img/stalinou.jpg" class="avatar" alt="Client">
-									<div class="client-details">
-										<p>
-											<span class="name">Samson</span>
-											<span class="email">sams@mail.com</span>
-										</p>
-										<ul class="icons-nav">
-											<li>
-												<a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Contact">
-													<i class="fas fa-eye"></i>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</li>
+								$for k, v in data.AllRequests.elements.items():
+									$if (data.AllRequests.last_id - int(k)) < 8:
+										<li class="client clearfix">
+											<img src="static/img/stalinou.jpg" class="avatar" alt="Client">
+											<div class="client-details">
+												<div class="row">
+													<div class="col-lg-3">
+														<p>
+															<span class="name">$data.AllUsers.elements[v.data['user']].data['firstname'] $data.AllUsers.elements[v.data['user']].data['lastname']</span>
+														<span class="email">$data.AllUsers.elements[v.data['user']].data['mail']</span>
+														</p>
 
+													</div>
+													<div class="col-lg-3">
+														<p>
+															<span class="question">$v.data['subject']</span>
+														</p>
+
+													</div>
+												</div>
+												<ul class="icons-nav">
+													<li>
+														<a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Contact">
+															<i class="fas fa-eye"></i>
+														</a>
+													</li>
+												</ul>
+											</div>
+										</li>
 							</ul>
 						</div>
 					</div>

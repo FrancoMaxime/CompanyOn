@@ -33,10 +33,9 @@ class Connection:
 			mail = data['_mail_']
 			time = useful.now()
 			password = useful.encrypt(data['_password_'],time)
-			user = company.AllUsers.new_object()
 			test = company.AllUsers.get_user(mail)
+			user = company.AllUsers.new_object()
 			if user.verify(data) and test == None:
-				print "je passe ici"
 				user.data['mail'] = mail
 				user.data['password'] = password
 				user.data['registration'] = time
@@ -54,7 +53,9 @@ class Connection:
 					user.data['id_company'] = comp.data['id_company']
 				if 'company' in data:
 					user.data['id_company'] = data['company']
-				user.save(company, user)	
+				user.save(company, user)
+			else:
+				company.AllUsers.last_id -= 1	
 			return render.connection()
 		elif '_login_'in data and data['_login_'] == "login":
 			test = connexion(data['_username_'], data['_password_'])
@@ -112,6 +113,7 @@ if __name__ == "__main__":
 	web.config.debug = True
 	company = companydata.CompagnyOn()
 	company.load()
+	print company.AllUsers.elements.items()
 	web.template.Template.globals['data'] = company
 	web.template.Template.globals['useful'] = useful
 	render = web.template.render('templates/', base='layout')

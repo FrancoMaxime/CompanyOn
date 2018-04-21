@@ -9,12 +9,14 @@ class CompagnyOn():
 		self.AllRoles = AllRoles(self)
 		self.AllConnectedUsers = AllConnectedUsers()
 		self.AllSpecialities = AllSpecialities(self)
+		self.AllRequests = AllRequests(self)
 		
 	def load(self):
 		self.AllUsers.load()
 		self.AllCompanies.load()
 		self.AllRoles.load()
 		self.AllSpecialities.load()
+		self.AllRequests.load()
 		
 	def find_all_from_object(self, object):
 		if object.__class__.__name__ == User.__name__:
@@ -51,16 +53,18 @@ class AllObjects():
 			csvfile.write('\n')
 	
 	def load_data(self):
+		max = 0
 		with open(self.filename) as csvfile:
 			reader = unicodecsv.DictReader(csvfile, delimiter="\t")
 			for row in reader:
 				key = int(row[self.keyid])
-				if key > self.last_id:
-					self.last_id = key
+				if key > max:
+					max = key
 				currObject = self.new_object()
 				currObject.data = row
 				currObject.id = key
-				self.elements[key] = currObject
+				self.elements[str(key)] = currObject
+		self.last_id = max
 
 
 class Object():
@@ -73,6 +77,7 @@ class Object():
 			self.data["user"] = anUser.data['id_user']
 		allObjects = configuration.find_all_from_object(self)
 		if (not allObjects.keyid in self.data) or (self.data[allObjects.keyid] == ""):
+			print "sa bug sa mere la pute"
 			self.data[allObjects.keyid] = int(allObjects.last_id) + 1
 			allObjects.last_id = int(allObjects.last_id) + 1
 		allObjects.elements[self.data[allObjects.keyid]] = self
@@ -83,7 +88,7 @@ class Object():
 
 	def verify(self,data):
 		for k,v in data.items():
-			if k != 'company' and v == "":
+			if k != 'company' and k != '_name_' and k != '_TVA_' and k != '_domain_' and v == "":
 				return False
 		return True
 
@@ -97,7 +102,7 @@ class AllUsers(AllObjects):
 		
 	def new_object(self):
 		user = User()
-		user.data['id_user'] = self.last_id +1
+		user.data[self.keyid] = self.last_id +1
 		self.last_id += 1
 		return user
 	
@@ -139,7 +144,7 @@ class AllRoles(AllObjects):
 		
 	def new_object(self):
 		role = Role()
-		role.data['id_role'] = self.last_id +1
+		role.data[self.keyid] = self.last_id +1
 		self.last_id += 1
 		return role
 				
@@ -156,7 +161,7 @@ class AllSpecialities(AllObjects):
 		
 	def new_object(self):
 		spec = Role()
-		spec.data['id_role'] = self.last_id +1
+		spec.data[self.keyid] = self.last_id +1
 		self.last_id += 1
 		return spec
 				
@@ -205,3 +210,24 @@ class ConnectedUser():
 
     def update(self):
         self.datetime = useful.get_timestamp()
+
+
+class Request(Object):
+	def __init__(self):
+		Object.__init__(self)
+		
+class AllRequests(AllObjects):
+	def __init__(self, config):
+		AllObjects.__init__(self, config)
+		self.fields = ['begin','id_request','subject','id_domain', 'remark', 'state' ,'user']
+		self.filename = 'csv/requests.csv'
+		self.keyid = 'id_request'
+		self.solved = 0
+		self.progress = 0
+		self.waiting = 0
+		
+	def new_object(self):
+		spec = Role()
+		spec.data[self.keyid] = self.last_id +1
+		self.last_id += 1
+		return spec
