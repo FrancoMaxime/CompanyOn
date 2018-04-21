@@ -2,6 +2,13 @@ import web
 import useful
 import companydata
 
+class Profile:
+	def GET(self):
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		return render.profile(mail)
+
 class Request:
 	def GET(self):
 		mail = is_connected()
@@ -124,7 +131,8 @@ if __name__ == "__main__":
         '/connection','Connection',
         '/disconnect', 'Disconnect',
         '/compagny', 'Compagny',
-		'/request', 'Request'
+		'/request', 'Request',
+		'/profile', 'Profile'
     )
 	app = web.application(urls, globals())
 	app.notfound = notfound
