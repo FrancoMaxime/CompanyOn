@@ -2,6 +2,18 @@ import web
 import useful
 import companydata
 
+class User:
+	def GET(self, id):
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		user = company.AllUsers.get_user(mail)
+		confirm = company.AllUsers.elements[id]
+		if user.data['id_company'] == confirm.data['id_company'] and user.data['id_role'] == '1':
+			confirm.data['active'] = '1'
+			confirm.save(company, user)
+		raise web.seeother('/company')
+
 class Profile:
 	def GET(self):
 		mail = is_connected()
@@ -213,6 +225,7 @@ if __name__ == "__main__":
 		'/request/(.+)','Request_Detail',
 		'/profile', 'Profile',
 		'/company', 'Company',
+		'/user/(.+)', 'User',
     )
 	app = web.application(urls, globals())
 	app.notfound = notfound

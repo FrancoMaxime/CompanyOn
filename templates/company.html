@@ -28,7 +28,7 @@ $code:
 									$if data.AllUsers.get_user(mail).data['id_company'] == v.data['id_company'] :
 										<tr>
 											<td><img src="/static/img/users$k" alt="Smiley face" height="42" width="42"></td>
-											<td>$data.AllUsers.elements[v.data['user']].data['firstname'] $data.AllUsers.elements[v.data['user']].data['lastname']</td>
+											<td>$data.AllUsers.elements[v.data['id_user']].data['firstname'] $data.AllUsers.elements[v.data['id_user']].data['lastname']</td>
 											<td>
 												$if 'id_speciality' in v.data and v.data['id_speciality'] != '':
 													$data.AllSpecialities.elements[v.data['id_speciality']].data['name']
