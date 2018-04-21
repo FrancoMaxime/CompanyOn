@@ -20,19 +20,23 @@ $var email : $mail
                                 $for k, v in data.AllRequests.elements.items():
                                     $if data.AllUsers.elements[v.data['user']].data['mail'] == mail:
                                         <li class="client clearfix">
-                                            <img src="static/img/stalinou.jpg" class="avatar" alt="Client">
+                                            <img src="static/img/users$data.AllUsers.get_user(mail).data['id_user']" class="avatar" alt="Client">
                                             <div class="client-details">
                                                 <div class="row">
-                                                    <div class="col-lg-5">
+                                                    <div class="col-lg-5 hidden-xs">
                                                         <p>
-                                                            <span class="name">$data.AllUsers.elements[v.data['user']].data['firstname'] $data.AllUsers.elements[v.data['user']].data['lastname']</span>
-                                                            <span class="email">$data.AllUsers.elements[v.data['user']].data['mail']</span>
+                                                            <span class="question">$v.data['subject']</span>
                                                         </p>
 
                                                     </div>
                                                     <div class="col-lg-5 hidden-xs">
                                                         <p>
-                                                            <span class="question">$v.data['subject']</span>
+                                                            $if v.data['status'] == '1' or v.data['status'] == 1:
+                                                                <span class="question" style="color:red">Non résolus</span>
+                                                            $elif v.data['status'] == '2' or v.data['status'] == 2:
+                                                                <span class="question" style="color:orange">En cours de résolution</span>
+                                                            $elif v.data['status'] == '3' or v.data['status'] == 3:
+                                                                <span class="question" style="color:green">Résolus</span>
                                                         </p>
 
                                                     </div>
@@ -42,12 +46,14 @@ $var email : $mail
 
                                                         <form method="post">
                                                             <input type="text" class="hide" name="_idrequest_" value="$v.data['id_request']">
-                                                            <a href="#"  class="eye" data-toggle="tooltip"  title="" data-original-title="Contact">
+                                                            <a href="#"  data-id="$k" class="eye" data-toggle="tooltip"  title="" data-original-title="Contact">
                                                                 <i class="fas fa-eye"></i>
                                                             </a>
-                                                            <button type="submit" name="_validate_" value="validate" class="btn">
-                                                                <i class="fa fa-check"></i>
-                                                            </button>
+                                                            $if v.data['status'] != 3 and v.data['status'] != '3':
+                                                                <button type="submit" name="_validate_" value="validate" class="btn">
+                                                                    <i class="fa fa-check"></i>
+
+                                                                </button>
                                                         </form>
                                                     </li>
                                                 </ul>
@@ -63,7 +69,7 @@ $var email : $mail
                             <h5 class="blog-title">A propos</h5>
                         </div>
                         <div class="blog-body center-align-text">
-                            <img src="static/img/stalinou.jpg" alt="User" class="img-responsive img-circle auto-margin img-xs">
+                            <img src="static/img/users$data.AllUsers.get_user(mail).data['id_user']" alt="User" class="img-responsive img-circle auto-margin img-xs">
                             <hr class="less-margin">
                             <div class="blog-content">
                                 <form class="form-horizontal" role="form">
@@ -93,9 +99,9 @@ $var email : $mail
                         <div class="blog-body">
                             <ul class="clients-list">
                                 $for k, v in data.AllRequests.elements.items():
-                                    $if data.AllUsers.elements[v.data['user']].data['mail'] == mail:
+                                    $if data.AllUsers.elements[v.data['user']].data['mail'] != mail and (v.data['status'] == 3 or v.data['status'] == '3') and v.data['helper'] ==  data.AllUsers.get_user(mail).data['id_user']:
                                         <li class="client clearfix">
-                                            <img src="static/img/stalinou.jpg" class="avatar" alt="Client">
+                                            <img src="static/img/users$v.data['user']" class="avatar" alt="Client">
                                             <div class="client-details">
                                                 <div class="row">
                                                     <div class="col-lg-5">
@@ -128,4 +134,5 @@ $var email : $mail
             </div>
         </div>
     </div>
+
 </div>
