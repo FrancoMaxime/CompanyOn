@@ -2,7 +2,12 @@ import web
 import useful
 import companydata
 
-
+class Request:
+	def GET(self):
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		return render.request()
 
 class Index:
     def GET(self):
@@ -78,8 +83,8 @@ class Disconnect():
     def GET(self):
         mail = is_connected()
         if mail is not None:
-            companydata.connectedUsers.disconnect(mail)
-        raise web.seeother('/')		
+            company.AllConnectedUsers.disconnect(mail)
+        raise web.seeother('/connection')		
         
 def notfound():
     return web.notfound(render.notfound())
@@ -116,7 +121,8 @@ if __name__ == "__main__":
         '/home','Index',
         '/connection','Connection',
         '/disconnect', 'Disconnect',
-        '/compagny', 'Compagny'
+        '/compagny', 'Compagny',
+		'/request', 'Request'
     )
 	app = web.application(urls, globals())
 	app.notfound = notfound

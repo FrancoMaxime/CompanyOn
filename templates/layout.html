@@ -44,25 +44,17 @@ $if content.recursive == 'False':
 				</li>
 				<li class="list-box user-profile hidden-xs">
 					<a id="drop4" href="#" class="user-avtar animated rubberBanddropdown-toggle" data-toggle="dropdown" data-original-title="" title="">
-						<img src="img/user4.jpg" alt="user avatar">
+						<img src="static/img/stalinou.jpg" alt="user avatar">
 						<span class="user-name">Mr. Willams <i class="fa fa-angle-down"></i></span>
 					</a>
 					<ul class="dropdown-menu sm user-settings">
 						<li>
 							<a href="profile.html" data-original-title="" title=""><i class="far fa-smile"></i>Mon profil</a>
 						</li>
-						<li>
-							<a href="#" data-original-title="" title=""> <i class="fa fa-bell-o"></i> Messages</a>
-						</li>
-						<li>
-							<a href="profile.html" data-original-title="" title=""> <i class="fa fa-calendar"></i> Appointments</a>
-						</li>
+
 						<hr class="less-margin">
 						<li>
-							<a href="#" data-original-title="" title=""> <i class="fa fa-sun-o"></i> Account Settings</a>
-						</li>
-						<li>
-							<a href="login.html" data-original-title="" title=""> <i class="fa fa-sign-out"></i> Logout</a>
+							<a href="/disconnect" data-original-title="" title=""> <i class="fas fa-sign-out-alt"></i> Logout</a>
 						</li>
 					</ul>
 				</li>
@@ -95,7 +87,7 @@ $if content.recursive == 'False':
 											</a>
 										</li>
 										<li>
-											<a href='/home'>
+											<a href='/request'>
 												<i class="fa fa-handshake"></i>
 												<span>Requêtes</span>
 											</a>
@@ -116,54 +108,7 @@ $if content.recursive == 'False':
 
 								</div>
 								<!-- Menu End -->
-								<div class="freebies">
 
-									<!-- Sidebar Extras -->
-									<div class="sidebar-addons">
-										<ul class="views">
-											<li>
-												<div>
-													<h5><b style="color:grey">Partenaires</b></h5>
-												</div>
-											</li>
-											<li>
-												<i class="fa fa-line-chart" style="color:grey"></i>
-												<div class="details">
-													<a href="https://statofus.com/fr/" target="_blank"><p>Statofus</p></a>
-												</div>
-											</li>
-											<li>
-												<i class="fa fa-lightbulb-o" style="color:grey"></i>
-												<div class="details">
-													<a href="http://www.dofastuces.fr/" target="_blank"><p>Dofastuces</p></a>
-												</div>
-											</li>
-											<li>
-												<div>
-													<h5><b style="color:grey">Informations</b></h5>
-												</div>
-											</li>
-											<li>
-												<i class="fa fa-thumb-tack" style="color:grey"></i>
-												<div class="details">
-													<a href="/home/apropos"><p>À propos</p></a>
-												</div>
-											</li>
-											<li>
-												<i class="fa fa-paypal" style="color:grey" aria-hidden="true"></i>
-												<div class="details">
-													<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NPGY5SJE6NY8W"  target="_blank"><p>Donation</p></a>
-												</div>
-											</li>
-
-
-										</ul>
-
-									</div>
-
-
-
-								</div>
 
 							</aside>
 							<!-- Left sidebar ends -->
@@ -181,13 +126,7 @@ $if content.recursive == 'False':
 
 
 								<!-- Top Bar starts -->
-								<div class="spacer">
-									<div class="main-container">
-										<div class="container-fluid">
-											$:content
-										</div>
-									</div>
-								</div>
+								$:content
 
 
 								<!-- Main Container ends -->
