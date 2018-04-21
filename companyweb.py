@@ -38,7 +38,10 @@ class Request:
 				request.data['subject'] = data['_subject_']
 				request.data['id_domain'] = id
 				request.data['remark'] = data['_remark_']
+				request.data['status'] = 1
 				request.save(company, user)
+				company.AllRequests.total += 1
+				company.AllRequests.waiting += 1
 			else:
 				company.AllRequests.last_id -= 1
 			

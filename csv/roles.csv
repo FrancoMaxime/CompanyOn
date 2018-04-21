@@ -1,1 +1,4 @@
-begin	id_role	name	TVA	remark	domain	user
+begin	id_role	name	remark	domain	user
+2018-04-21 04:11:00	1	Directeur		1
+2018-04-21 04:11:00	2	Employe		1
+

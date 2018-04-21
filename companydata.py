@@ -141,7 +141,7 @@ class Company(Object):
 class AllRoles(AllObjects):
 	def __init__(self, config):
 		AllObjects.__init__(self, config)
-		self.fields = ['begin','id_role','name', 'TVA', 'remark', 'domain', 'user']
+		self.fields = ['begin','id_role','name', 'remark', 'domain', 'user']
 		self.filename = 'csv/roles.csv'
 		self.keyid = 'id_role'
 		
@@ -239,9 +239,20 @@ class AllRequests(AllObjects):
 	def load_status(self):
 		for k, v in self.elements.items():
 			self.total += 1
-			if v.data['status'] == '1' :
+			if v.data['status'] == '1' or v.data['status'] == 1:
 				self.waiting += 1
-			elif v.data['status'] == '2' :
+			elif v.data['status'] == '2' or v.data['status'] == 2:
 				self.progress +=  1
-			elif v.data['status'] == '3' :
+			elif v.data['status'] == '3' or v.data['status'] == 3:
 				self.solved += 1
+			else :
+				print v.data['status']
+	
+	def get_waiting(self):
+		return (self.waiting / float(self.total))* 100
+		
+	def get_progress(self):
+		return (self.progress / float(self.total))* 100
+		
+	def get_solved(self):
+		return (self.solved / float(self.total))* 100
