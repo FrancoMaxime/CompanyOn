@@ -10,21 +10,7 @@ $var email : $mail
     <div class="main-container">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="blog">
-                        <div class="blog-header">
-                            <h5 class="blog-title">About</h5>
-                        </div>
-                        <div class="blog-body center-align-text">
-                            <img src="static/img/stalinou.jpg" alt="User" class="img-responsive img-circle auto-margin img-xs">
-                            <hr class="less-margin">
-                            <div class="blog-content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe eveniet hic eaque neque inventore ex fugit...
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="blog blog-danger">
                         <div class="blog-header">
                             <h5 class="blog-title">Mes requêtes</h5>
@@ -37,14 +23,14 @@ $var email : $mail
                                             <img src="static/img/stalinou.jpg" class="avatar" alt="Client">
                                             <div class="client-details">
                                                 <div class="row">
-                                                    <div class="col-lg-3">
+                                                    <div class="col-lg-5">
                                                         <p>
                                                             <span class="name">$data.AllUsers.elements[v.data['user']].data['firstname'] $data.AllUsers.elements[v.data['user']].data['lastname']</span>
                                                             <span class="email">$data.AllUsers.elements[v.data['user']].data['mail']</span>
                                                         </p>
 
                                                     </div>
-                                                    <div class="col-lg-3">
+                                                    <div class="col-lg-5 hidden-xs">
                                                         <p>
                                                             <span class="question">$v.data['subject']</span>
                                                         </p>
@@ -60,6 +46,74 @@ $var email : $mail
                                                 </ul>
                                             </div>
                                         </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog">
+                        <div class="blog-header">
+                            <h5 class="blog-title">A propos</h5>
+                        </div>
+                        <div class="blog-body center-align-text">
+                            <img src="static/img/stalinou.jpg" alt="User" class="img-responsive img-circle auto-margin img-xs">
+                            <hr class="less-margin">
+                            <div class="blog-content">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+
+                                        <label class="col-sm-2 control-label">Email</label>
+                                        <div class="col-sm-7">
+                                            <h4>$mail</h4>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Identité</label>
+                                        <div class="col-sm-7">
+                                            <h4>$data.AllUsers.get_user(mail).data['lastname'] $data.AllUsers.get_user(mail).data['firstname']</h4>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog blog-success">
+                        <div class="blog-header">
+                            <h5 class="blog-title">Mes requêtes</h5>
+                        </div>
+                        <div class="blog-body">
+                            <ul class="clients-list">
+                                $for k, v in data.AllRequests.elements.items():
+                                $if data.AllUsers.elements[v.data['user']].data['mail'] == mail:
+                                <li class="client clearfix">
+                                    <img src="static/img/stalinou.jpg" class="avatar" alt="Client">
+                                    <div class="client-details">
+                                        <div class="row">
+                                            <div class="col-lg-5">
+                                                <p>
+                                                    <span class="name">$data.AllUsers.elements[v.data['user']].data['firstname'] $data.AllUsers.elements[v.data['user']].data['lastname']</span>
+                                                    <span class="email">$data.AllUsers.elements[v.data['user']].data['mail']</span>
+                                                </p>
+
+                                            </div>
+                                            <div class="col-lg-5 hidden-xs">
+                                                <p>
+                                                    <span class="question">$v.data['subject']</span>
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                        <ul class="icons-nav">
+                                            <li>
+                                                <a href="#" data-toggle="tooltip" data-placement="left" title="" data-original-title="Contact">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
