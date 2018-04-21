@@ -14,7 +14,11 @@ class Profile:
 		if mail is None:
 			raise web.seeother('/connection')
 		elif'_validate_' in data and data['_validate_'] == 'validate':
-			return True
+			user = company.AllUsers.get_user(mail)
+			request = company.AllRequests.elements[data['_idrequest_']]
+			request.data['status'] = 3
+			request.save(company,user)
+		return render.profile(mail)
 
 
 class Request:
@@ -54,6 +58,14 @@ class Request:
 				company.AllRequests.last_id -= 1
 			
 		return render.index(mail)
+
+class Request_Detail:
+	def GET(self,id):
+		mail = is_connected()
+
+		if mail is None:
+			raise web.seeother('/connection')
+		return render.requestDetail(mail,str(id))
 
 class Index:
     def GET(self):
@@ -177,6 +189,7 @@ if __name__ == "__main__":
         '/disconnect', 'Disconnect',
         '/compagny', 'Compagny',
 		'/request', 'Request',
+		'/request/(.+)','Request_Detail',
 		'/profile', 'Profile'
     )
 	app = web.application(urls, globals())

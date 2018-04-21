@@ -1,0 +1,12 @@
+$def with (mail,id)
+$var recursive : True
+$var email : $mail
+<div class="modal-header">
+
+</div>
+<div class="modal-body">
+    <img src="static/img/stalinou.jpg" alt="User" class="img-responsive img-circle auto-margin img-xs">
+    $id
+    <br/>
+    <h5 class="text-center">$data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['firstname'] $data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['lastname'] a besoin de votre aide !</h5>
+</div>
