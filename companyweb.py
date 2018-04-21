@@ -132,7 +132,7 @@ class Connection:
 					user.data['id_company'] = comp.data['id_company']
 					user.data['id_role'] = '1'
 					user.data['active'] = '1'
-				if 'company' in data :
+				if 'company' in data and data['company'] != "" :
 					user.data['id_company'] = data['company']
 					user.data['id_role'] = '2'
 					user.data['active'] = '0'

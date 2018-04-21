@@ -106,7 +106,7 @@ class AllUsers(AllObjects):
 		
 	def new_object(self):
 		user = User()
-		user.data[self.keyid] = self.last_id +1
+		user.data[self.keyid] = str(self.last_id +1)
 		self.last_id += 1
 		return user
 	
@@ -131,7 +131,7 @@ class AllCompanies(AllObjects):
 		
 	def new_object(self):
 		comp = Company()
-		comp.data['id_company'] = self.last_id +1
+		comp.data['id_company'] = str(self.last_id +1)
 		self.last_id += 1
 		return comp
 				
@@ -148,7 +148,7 @@ class AllRoles(AllObjects):
 		
 	def new_object(self):
 		role = Role()
-		role.data[self.keyid] = self.last_id +1
+		role.data[self.keyid] = str(self.last_id +1)
 		self.last_id += 1
 		return role
 				
@@ -165,7 +165,7 @@ class AllSpecialities(AllObjects):
 		
 	def new_object(self):
 		spec = Speciality()
-		spec.data[self.keyid] = self.last_id +1
+		spec.data[self.keyid] = str(self.last_id +1)
 		self.last_id += 1
 		return spec
 				
@@ -233,7 +233,7 @@ class AllRequests(AllObjects):
 		
 	def new_object(self):
 		spec = Request()
-		spec.data[self.keyid] = self.last_id +1
+		spec.data[self.keyid] = str(self.last_id +1)
 		self.last_id += 1
 		return spec
 	

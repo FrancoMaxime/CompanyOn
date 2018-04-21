@@ -29,7 +29,12 @@ $code:
 										<tr>
 											<td><img src="/static/img/users$k" alt="Smiley face" height="42" width="42"></td>
 											<td>$data.AllUsers.elements[v.data['user']].data['firstname'] $data.AllUsers.elements[v.data['user']].data['lastname']</td>
-											<td>$data.AllSpecialities.elements[v.data['id_speciality']].data['name']</td>
+											<td>
+												$if 'id_speciality' in v.data and v.data['id_speciality'] != '':
+													$data.AllSpecialities.elements[v.data['id_speciality']].data['name']
+												$else:
+													-
+											</td>
 											<td>$data.AllRoles.elements[v.data['id_role']].data['name']</td>
 											<td>
 												$if user.data['id_role'] == '1' or user.data['id_role'] == 1:
