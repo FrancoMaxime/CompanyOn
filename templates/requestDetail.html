@@ -9,10 +9,12 @@ $var email : $mail
         <div class="blog-header">
             </div>
         <div class="blog-body">
-            <img src="static/img/users$data.AllUsers.get_user(mail).data['id_user']" alt="User" class="img-responsive img-circle auto-margin img-xs">
+            <img src="static/img/users$data.AllRequests.elements[id].data['user']" alt="User" class="img-responsive img-circle auto-margin img-xs">
             <br/>
-            $if data.AllRequests.elements[id].data['user'] != data.AllUsers.get_user(mail).data['id_user']:
-                <h4 class="text-center">$data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['firstname'] $data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['lastname'] a besoin de votre aide !</h4>
+            <h4 class="text-center">$data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['firstname'] $data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['lastname']
+            $if data.AllRequests.elements[id].data['user'] != data.AllUsers.get_user(mail).data['id_user'] and (data.AllRequests.elements[id].data['status'] == 1 or data.AllRequests.elements[id].data['status'] == '1'):
+                 a besoin de votre aide !
+            </h4>
 
             <br/>
             <div class="blog blog-content">
@@ -22,7 +24,7 @@ $var email : $mail
                 <label class="control-label">Description</label>
                 <div class="">$data.AllRequests.elements[id].data['remark']</div>
             </div>
-            $if data.AllRequests.elements[id].data['user'] != data.AllUsers.get_user(mail).data['id_user']:
+            $if data.AllRequests.elements[id].data['user'] != data.AllUsers.get_user(mail).data['id_user'] and (data.AllRequests.elements[id].data['status'] == '1' or data.AllRequests.elements[id].data['status'] == 1):
                 <div class="modal-footer">
                     <form method="POST" action="/request/1">
                         <input type="text" name="_requestId_" class="hidden" value="$id">
@@ -31,6 +33,7 @@ $var email : $mail
                         <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
                     </form>
                 </div>
+
 
 
         </div>

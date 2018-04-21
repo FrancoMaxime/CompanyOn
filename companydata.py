@@ -100,7 +100,7 @@ class Object():
 class AllUsers(AllObjects):
 	def __init__(self, config):
 		AllObjects.__init__(self, config)
-		self.fields = ['begin','id_user','mail','password','firstname','lastname','id_company', 'remark','phonenumber','id_role','active', 'user', 'rating', 'registration', 'id_speciality']
+		self.fields = ['begin','id_user','mail','password','firstname','lastname','id_company', 'remark','phonenumber','id_role','active', 'user', 'rating', 'registration', 'id_speciality', 'nb_rating']
 		self.filename = 'csv/users.csv'
 		self.keyid = 'id_user'
 		
