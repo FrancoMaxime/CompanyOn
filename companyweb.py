@@ -2,6 +2,16 @@ import web
 import useful
 import companydata
 
+class Api:
+	def GET(self):
+		data = web.input()
+		print data
+		if 'ville' in data and 'pays' in data:
+			company.ExtThread.loadData(data.pays,data.ville)
+		else:
+			company.ExtThread.loadData("BE","Mons")
+		return render.api()
+
 
 class Refresh:
 	def GET(self):
@@ -293,7 +303,8 @@ if __name__ == "__main__":
 			'/rate/(.+)', 'Request_Detail',
 			'/message', 'Message',
 			'/refresh', 'Refresh',
-			'/sensor' , 'Sensor'
+			'/sensor' , 'Sensor',
+			'/api', 'Api'
 		)
 		app = web.application(urls, globals())
 		app.notfound = notfound

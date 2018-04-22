@@ -1,0 +1,26 @@
+$def with ()
+$var recursive : True
+<div class="success-bg center-align-text">
+    <div class="spacer-xs">
+        <i class="fas fa-thermometer fa-2x pull-left"></i>
+        <small class="text-white">Température</small>
+        <h3 class="no-margin no-padding">$data.ExtThread.sensor.temperature℃</h3>
+    </div>
+</div>
+<br/>
+<div class="info-bg center-align-text">
+    <div class="spacer-xs">
+        <i class="fas fa-tint fa-2x pull-left"></i>
+        <small class="text-white">Humidité</small>
+        <h3 class="no-margin no-padding">$data.ExtThread.sensor.humidity%</h3>
+    </div>
+</div>
+<br/>
+<div class="danger-bg center-align-text">
+    <div class="spacer-xs">
+        <i class="fas fa-sun fa-2x pull-left"></i>
+        <small class="text-white">Vent</small>
+        <h3 class="no-margin no-padding">$(data.ExtThread.sensor.wind)mpH</h3>
+    </div>
+</div>
+</div>

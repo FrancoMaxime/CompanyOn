@@ -107,7 +107,34 @@ $var email : $mail
 							</div>
 						</div>
 					</div>
+					<div class="blog">
+						<div class="blog-header">
+							<h5 class="blog-title">Données extérieure</h5>
+						</div>
+						<div class="blog-body">
+							<div class="row">
+								<div class="col-lg-3">
+									<input type="text" class="form-control pays" placeholder="Pays">
+								</div>
+								<div class="col-lg-3">
+									<input type="text" class="form-control ville" placeholder="Ville">
+								</div>
+								<div class="col-lg-3">
+									<input type="button" class="btn btn-default bubu" value="Valider">
+								</div>
+							</div>
+							<hr>
+							<div class="row">
+								<div class="social-widget" id="contain">
+									<div class="social-body" id="api">
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+
 
 
 				<div class="col-lg-6">
@@ -241,7 +268,6 @@ $var email : $mail
                 // This function fires when the request is successful: it takes the result of the ajax request and replaces the HTML in the target <div>
                 success: function(result){
                     temp = [now += updateInterval, result];
-                    console.log(result);
                 }
             });
             // This just stops the <a> tag firing as a normal tag.
@@ -326,6 +352,12 @@ $var email : $mail
 
     $$(document).ready(function(){
 
+        var url = "/api";
+        $$('#contain').find('#api').load(url);
+
+        $$('.pays').val('BE');
+        $$('.ville').val('Mons');
+
         var x = 0;
 
 
@@ -338,6 +370,22 @@ $var email : $mail
 				    scroll();
 				}
             },1000);
+        });
+
+        $$(".bubu").on("click", function(e){
+			var pays = "";
+			var ville = "";
+            if($$('.pays').val() == "" || $$('.ville').val() == ""){
+                pays = "BE";
+                ville = "Mons";
+			}
+			else{
+                pays = $$('.pays').val();
+                ville = $$('.ville').val();
+			}
+            var url = "/api?ville="+ville+"&pays="+pays;
+            $$('#contain').find('#api').load(url);
+            return false;
         });
 
 

@@ -31,7 +31,6 @@ class CompagnyOn():
 		self.AllRequests.load_status()
 		self.UpdateThread.start()
 		self.TemperatureThread.start()
-		self.ExtThread.start()
 		
 	def find_all_from_object(self, object):
 		if object.__class__.__name__ == User.__name__:
@@ -374,24 +373,17 @@ class TemperatureThread(threading.Thread):
 					self.sensor.temperature = test[i]['value']
 			time.sleep(1200)
 			
-class ExtThread(threading.Thread):
+class ExtThread():
     def __init__(self, company):
-		threading.Thread.__init__(self)
 		self.company = company
 		self.sensor = Sensor3()
-		self.ville = 'Mons'
-		self.pays = 'BE'
-    def run(self):
-		url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22'+str(self.ville)+'%2C%20'+str(self.pays)+'%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'
+
+    def loadData(self,pays,ville):
+		url = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22'+str(ville)+'%2C%20'+str(pays)+'%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'
 		headers = {}
-		while self.company.is_threading:
-			r = requests.get(url, headers=headers)
-			test = json.loads(r.text)
-			self.sensor.humidity = test['query']['results']['channel']['atmosphere']['humidity']
-			self.sensor.temperature = (float(test['query']['results']['channel']['item']['condition']['temp']) -32 )/1.8
-			self.sensor.wind = test['query']['results']['channel']['wind']['speed']
-			print self.sensor.temperature
-			print self.sensor.humidity
-			print self.sensor.wind
-			
-			time.sleep(1200)
+		r = requests.get(url, headers=headers)
+		test = json.loads(r.text)
+		self.sensor.humidity = '{0:.2f}'.format(float(test['query']['results']['channel']['atmosphere']['humidity']))
+		self.sensor.temperature = '{0:.2f}'.format((float(test['query']['results']['channel']['item']['condition']['temp']) -32 )/1.8)
+		self.sensor.wind = '{0:.2f}'.format(float(test['query']['results']['channel']['wind']['speed']))
+
