@@ -148,7 +148,7 @@ $var email : $mail
 									<h5 class="panel-title">Realtime Chart</h5>
 								</div>
 								<div class="blog-body">
-									<div id="flot-placeholder" class="chart-height" style="padding: 0px;"><canvas class="flot-base" width="864" height="528" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 288px; height: 176px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 70px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 120px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 170px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 220px; text-align: center;">04:44</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 270px; text-align: center;">04:44</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 155px; left: 11px; text-align: right;">0%</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 79px; left: 6px; text-align: right;">50%</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 4px; left: 0px; text-align: right;">100%</div></div></div><canvas class="flot-overlay" width="864" height="528" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 288px; height: 176px;"></canvas><div class="legend"><div style="position: absolute; width: 45px; height: 14px; top: 14px; right: 14px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:14px;right:14px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid #76BBAD;overflow:hidden"></div></div></td><td class="legendLabel">Sales</td></tr></tbody></table></div></div>
+									<div id="flot-placeholder" class="chart-height" style="padding: 0px;"><canvas class="flot-base" width="864" height="750" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 288px; height: 350px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 70px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 120px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 170px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 220px; text-align: center;">04:44</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 270px; text-align: center;">04:44</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 155px; left: 11px; text-align: right;">0%</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 79px; left: 6px; text-align: right;">50%</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 4px; left: 0px; text-align: right;">100%</div></div></div><canvas class="flot-overlay" width="864" height="528" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 288px; height: 176px;"></canvas><div class="legend"><div style="position: absolute; width: 45px; height: 14px; top: 14px; right: 14px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:14px;right:14px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid #76BBAD;overflow:hidden"></div></div></td><td class="legendLabel">Sales</td></tr></tbody></table></div></div>
 								</div>
 							</div>
 						</div>
@@ -208,26 +208,23 @@ $var email : $mail
     var updateInterval = 1000;
     var now = new Date().getTime();
 
-
+    var y = 0;
+    var temp ;
     function GetData() {
         data.shift();
 
         while (data.length < totalPoints) {
-            var y = Math.random() * 100;
+
             $$.ajax({
                 url: "/sensor",
                 // This function fires when the request is successful: it takes the result of the ajax request and replaces the HTML in the target <div>
                 success: function(result){
-                    $$(".chats").append(result);
-
-                    var objDiv = document.getElementById("scroro");
-                    objDiv.scrollTop = objDiv.scrollHeight;
-                    $$(".chatty").val('')
+                    temp = [now += updateInterval, result];
+                    console.log(result);
                 }
             });
             // This just stops the <a> tag firing as a normal tag.
-            
-            var temp = [now += updateInterval, y];
+
 
             data.push(temp);
         }
@@ -269,15 +266,8 @@ $var email : $mail
         },
         yaxis: {
             min: 0,
-            max: 100,
-            tickSize: 25,
-            tickFormatter: function (v, axis) {
-                if (v % 10 == 0) {
-                    return v + "%";
-                } else {
-                    return "";
-                }
-            },
+            max: 10000,
+
             axisLabel: "CPU loading",
             axisLabelUseCanvas: true,
             axisLabelFontSizePixels: 12,
@@ -316,7 +306,7 @@ $var email : $mail
             setInterval(function() {
                 var url = "/refresh";
                 $$('.scr').find('#chats').load(url);
-            },1000);
+            },2000);
         });
 
         var objDiv = document.getElementById("scroro");

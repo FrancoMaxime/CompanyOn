@@ -299,7 +299,7 @@ class Sensor():
 		self.value=[]
 	
 	def add_value(self, value):
-		if len(self.value)> 1600:
+		if len(self.value)> 100:
 			del self.value[0]
 		self.value.append(value)
 	
@@ -329,5 +329,4 @@ class UpdateThread(threading.Thread):
 				time.sleep(.01)
 			moy /= 100
 			self.sensor.add_value(moy)
-			print str(len(self.sensor.value))
 			moy = 0
