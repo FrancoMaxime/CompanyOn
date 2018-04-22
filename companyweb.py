@@ -261,28 +261,35 @@ def update_cookie(infoCookie):
     web.setcookie('companyon', infoCookie, expires=9000)
     
 if __name__ == "__main__":
-	web.config.debug = True
-	company = companydata.CompagnyOn()
-	company.load()
-	web.template.Template.globals['data'] = company
-	web.template.Template.globals['useful'] = useful
-	render = web.template.render('templates/', base='layout')
-	urls = (
-        '/', 'Index',
-        '/index','Index',
-        '/home','Index',
-        '/connection','Connection',
-        '/disconnect', 'Disconnect',
-        '/compagny', 'Compagny',
-		'/request', 'Request',
-		'/request/(.+)','Request_Detail',
-		'/profile', 'Profile',
-		'/company', 'Company',
-		'/user/(.+)', 'User',
-		'/rate/(.+)', 'Request_Detail',
-		'/message', 'Message',
-		'/refresh', 'Refresh'
-    )
-	app = web.application(urls, globals())
-	app.notfound = notfound
-	app.run()
+	try:
+		web.config.debug = True
+		company = companydata.CompagnyOn()
+		company.load()
+		web.template.Template.globals['data'] = company
+		web.template.Template.globals['useful'] = useful
+		render = web.template.render('templates/', base='layout')
+		urls = (
+			'/', 'Index',
+			'/index','Index',
+			'/home','Index',
+			'/connection','Connection',
+			'/disconnect', 'Disconnect',
+			'/compagny', 'Compagny',
+			'/request', 'Request',
+			'/request/(.+)','Request_Detail',
+			'/profile', 'Profile',
+			'/company', 'Company',
+			'/user/(.+)', 'User',
+			'/rate/(.+)', 'Request_Detail',
+			'/message', 'Message',
+			'/refresh', 'Refresh'
+		)
+		app = web.application(urls, globals())
+		app.notfound = notfound
+		app.run()
+	except:
+		traceback.print_exc(file=sys.stdout)
+	finally:
+		print 'fin des threads'
+		company.is_threading = False
+		company.UpdateThread.join()

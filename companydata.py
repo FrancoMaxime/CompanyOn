@@ -1,6 +1,9 @@
 import os
 import unicodecsv
 import useful
+import alsaaudio, time, audioop
+import time
+import threading
 
 class CompagnyOn():
 	def __init__(self):
@@ -11,6 +14,8 @@ class CompagnyOn():
 		self.AllSpecialities = AllSpecialities(self)
 		self.AllRequests = AllRequests(self)
 		self.AllMessages = AllMessages(self)
+		self.UpdateThread = UpdateThread(self)
+		self.is_threading = True
 		
 	def load(self):
 		self.AllUsers.load()
@@ -20,6 +25,7 @@ class CompagnyOn():
 		self.AllRequests.load()
 		self.AllMessages.load()
 		self.AllRequests.load_status()
+		self.UpdateThread.start()
 		
 	def find_all_from_object(self, object):
 		if object.__class__.__name__ == User.__name__:
@@ -288,19 +294,40 @@ class AllMessages(AllObjects):
 		return self.elements[str(id)]
 
 
-class Sensor(Object):
+class Sensor():
 	def __init__(self):
-		Object.__init__(self)
+		self.value=[]
+	
+	def add_value(self, value):
+		if len(self.value)> 1600:
+			del self.value[0]
+		self.value.append(value)
+	
+	def last_value(self):
+		return self.value[-1]
 		
-class AllSensors(AllObjects):
-	def __init__(self, config):
-		AllObjects.__init__(self, config)
-		self.fields = ['begin','id_sensors','name', 'remark','location', 'user']
-		self.filename = 'csv/sensors.csv'
-		self.keyid = 'id_sensors'
 		
-	def new_object(self):
-		spec = Sensor()
-		spec.data[self.keyid] = str(self.last_id +1)
-		self.last_id += 1
-		return spec
+class UpdateThread(threading.Thread):
+    def __init__(self, company):
+		threading.Thread.__init__(self)
+		self.company = company
+		self.sensor = Sensor()
+    
+    def run(self):
+		inp = alsaaudio.PCM(alsaaudio.PCM_CAPTURE,alsaaudio.PCM_NONBLOCK)
+		inp.setchannels(1)
+		inp.setrate(8000)
+		inp.setformat(alsaaudio.PCM_FORMAT_S16_LE)
+		inp.setperiodsize(160)
+
+		while self.company.is_threading:
+			moy =0
+			for i in range(100):
+				l,data = inp.read()
+				if l:
+					moy += audioop.max(data, 2)
+				time.sleep(.01)
+			moy /= 100
+			self.sensor.add_value(moy)
+			print str(len(self.sensor.value))
+			moy = 0
