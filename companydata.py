@@ -89,6 +89,9 @@ class Object():
 		self.data = {}
 		
 	def save(self, configuration, anUser=None):
+
+		if None in self.data:
+			del(self.data[None])
 		self.data["begin"] = useful.now()
 		if anUser != None:
 			self.data["user"] = anUser.data['id_user']

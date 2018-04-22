@@ -1,33 +1,64 @@
 $def with (mail)
 $var recursive : True
-$for i in range(data.AllMessages.last_id-15, data.AllMessages.last_id + 1):
-    $code:
-        v = data.AllMessages.get_message(i)
-    $if v.data['user'] == data.AllUsers.get_user(mail).data['id_user']:
-        <li class="out">
-            <img class="avatar" alt="" src="static/img/users$v.data['user']">
-            <div class="message">
-                <span class="arrow"></span>
-                <a href="#" class="name" data-original-title="" title="">$data.AllUsers.elements[v.data['user']].data['firstname']</a>
-                <span class="date-time">
-                    le $v.data['begin']<i class="fa fa-clock-o"></i>
-                </span>
-                <span class="body body-blue">
-                    $v.data['content'] <i class="fa fa-smile-o fa-lg text-primary"></i>
-                </span>
-            </div>
-        </li>
-    $else:
-        <li class="in">
-            <img class="avatar" alt="" src="static/img/users$v.data['user']">
-            <div class="message">
-                <span class="arrow"></span>
-                <a href="#" class="name" data-original-title="" title="">$data.AllUsers.elements[v.data['user']].data['firstname']</a>
-                <span class="date-time">
-                            le $v.data['begin']<i class="fa fa-clock-o"></i>
-                        </span>
-                <span class="body body-blue">
-                            $v.data['content'] <i class="fa fa-smile-o fa-lg text-primary"></i>
-                        </span>
-            </div>
-        </li>
+$if data.AllMessages.last_id < 16:
+    $for k,v in data.AllMessages.elements.items():
+        $if v.data['user'] == data.AllUsers.get_user(mail).data['id_user']:
+            <li class="out">
+                <img class="avatar" alt="" src="static/img/users$v.data['user']">
+                <div class="message">
+                    <span class="arrow"></span>
+                    <a href="#" class="name" data-original-title="" title="">$data.AllUsers.elements[v.data['user']].data['firstname']</a>
+                    <span class="date-time">
+                        le $v.data['begin']<i class="fa fa-clock-o"></i>
+                    </span>
+                    <span class="body body-blue">
+                        $v.data['content'] <i class="fa fa-smile-o fa-lg text-primary"></i>
+                    </span>
+                </div>
+            </li>
+        $else:
+            <li class="in">
+                <img class="avatar" alt="" src="static/img/users$v.data['user']">
+                <div class="message">
+                    <span class="arrow"></span>
+                    <a href="#" class="name" data-original-title="" title="">$data.AllUsers.elements[v.data['user']].data['firstname']</a>
+                    <span class="date-time">
+                                            le $v.data['begin']<i class="fa fa-clock-o"></i>
+                                        </span>
+                    <span class="body body-blue">
+                                            $v.data['content'] <i class="fa fa-smile-o fa-lg text-primary"></i>
+                                        </span>
+                </div>
+            </li>
+$else:
+    $for i in range(data.AllMessages.last_id-15, data.AllMessages.last_id + 1):
+        $code:
+            v = data.AllMessages.get_message(i)
+        $if v.data['user'] == data.AllUsers.get_user(mail).data['id_user']:
+            <li class="out">
+                <img class="avatar" alt="" src="static/img/users$v.data['user']">
+                <div class="message">
+                    <span class="arrow"></span>
+                    <a href="#" class="name" data-original-title="" title="">$data.AllUsers.elements[v.data['user']].data['firstname']</a>
+                    <span class="date-time">
+                        le $v.data['begin']<i class="fa fa-clock-o"></i>
+                    </span>
+                    <span class="body body-blue">
+                        $v.data['content'] <i class="fa fa-smile-o fa-lg text-primary"></i>
+                    </span>
+                </div>
+            </li>
+        $else:
+            <li class="in">
+                <img class="avatar" alt="" src="static/img/users$v.data['user']">
+                <div class="message">
+                    <span class="arrow"></span>
+                    <a href="#" class="name" data-original-title="" title="">$data.AllUsers.elements[v.data['user']].data['firstname']</a>
+                    <span class="date-time">
+                                le $v.data['begin']<i class="fa fa-clock-o"></i>
+                            </span>
+                    <span class="body body-blue">
+                                $v.data['content'] <i class="fa fa-smile-o fa-lg text-primary"></i>
+                            </span>
+                </div>
+            </li>

@@ -122,7 +122,7 @@ class Request_Detail:
 		elif '_rated_' in data and data['_rated_'] == 'rated':
 			if '_rate_' in data and data['_rate_'] != "":
 				user = company.AllUsers.elements[id]
-				if user.data['rating'] == "":
+				if user.data['rating'] == 0 or user.data['rating'] == '0':
 					user.data['rating'] = data['_rate_']
 					user.data['nb_rating'] = 1
 				else:
@@ -130,6 +130,7 @@ class Request_Detail:
 					user.data['nb_rating'] = str(int(user.data['nb_rating']) + 1)
 				request = company.AllRequests.elements[data['_requestId_']]
 				request.data['rated'] = 1
+
 				user.save(company,user)
 				user = company.AllUsers.get_user(data['_mail_'])
 				request.save(company,user)
@@ -201,6 +202,8 @@ class Connection:
 					user.data['id_company'] = data['company']
 					user.data['id_role'] = '2'
 					user.data['active'] = '0'
+				user.data['rating'] = 0
+				user.data['nb_rating'] = 0
 				user.save(company, user)
 			else:
 				company.AllUsers.last_id -= 1	
