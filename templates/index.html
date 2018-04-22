@@ -90,53 +90,67 @@ $var email : $mail
 
 
 				<div class="col-lg-6">
-					<div class="blog blog-danger">
-						<div class="blog-header">
-							<h5 class="blog-title">Requêtes récentes</h5>
-						</div>
-						<div class="blog-body">
-							<ul class="clients-list">
-								$for k, v in data.AllRequests.elements.items():
-									$if (data.AllRequests.last_id - int(k)) < 8:
-										<li class="client clearfix">
-											<img src="static/img/users$v.data['user']" class="avatar" alt="Client">
-											<div class="client-details">
-												<div class="row">
-													<div class="col-lg-5">
-														<p>
-															<span class="name">$data.AllUsers.elements[v.data['user']].data['firstname'] $data.AllUsers.elements[v.data['user']].data['lastname']</span>
-														<span class="email">$data.AllUsers.elements[v.data['user']].data['mail']</span>
-														</p>
+					<div class="row">
+						<div class="blog blog-danger">
+							<div class="blog-header">
+								<h5 class="blog-title">Requêtes récentes</h5>
+							</div>
+							<div class="blog-body">
+								<ul class="clients-list">
+									$for k, v in data.AllRequests.elements.items():
+										$if (data.AllRequests.last_id - int(k)) < 8:
+											<li class="client clearfix">
+												<img src="static/img/users$v.data['user']" class="avatar" alt="Client">
+												<div class="client-details">
+													<div class="row">
+														<div class="col-lg-5">
+															<p>
+																<span class="name">$data.AllUsers.elements[v.data['user']].data['firstname'] $data.AllUsers.elements[v.data['user']].data['lastname']</span>
+															<span class="email">$data.AllUsers.elements[v.data['user']].data['mail']</span>
+															</p>
 
-													</div>
-													<div class="col-lg-3 hidden-xs">
-														<p>
-															<span class="question">$data.AllSpecialities.elements[v.data['id_domain']].data['name']</span>
-														</p>
+														</div>
+														<div class="col-lg-3 hidden-xs">
+															<p>
+																<span class="question">$data.AllSpecialities.elements[v.data['id_domain']].data['name']</span>
+															</p>
 
-													</div>
-													<div class="col-lg-3">
-														<p>
-															$if v.data['status'] == '1' or v.data['status'] == 1:
-																<span class="question" style="color:red">Non résolus</span>
-															$elif v.data['status'] == '2' or v.data['status'] == 2:
-																<span class="question" style="color:orange">En cours de résolution</span>
-															$elif v.data['status'] == '3' or v.data['status'] == 3:
-																<span class="question" style="color:green">Résolus</span>
-														</p>
+														</div>
+														<div class="col-lg-3">
+															<p>
+																$if v.data['status'] == '1' or v.data['status'] == 1:
+																	<span class="question" style="color:red">Non résolus</span>
+																$elif v.data['status'] == '2' or v.data['status'] == 2:
+																	<span class="question" style="color:orange">En cours de résolution</span>
+																$elif v.data['status'] == '3' or v.data['status'] == 3:
+																	<span class="question" style="color:green">Résolus</span>
+															</p>
 
+														</div>
 													</div>
+													<ul class="icons-nav">
+														<li>
+															<a href="#" class="eye" data-id="$k" title="" data-original-title="Contact">
+																<i class="fas fa-eye"></i>
+															</a>
+														</li>
+													</ul>
 												</div>
-												<ul class="icons-nav">
-													<li>
-														<a href="#" class="eye" data-id="$k" title="" data-original-title="Contact">
-															<i class="fas fa-eye"></i>
-														</a>
-													</li>
-												</ul>
-											</div>
-										</li>
-							</ul>
+											</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="blog">
+								<div class="blog-header">
+									<h5 class="panel-title">Realtime Chart</h5>
+								</div>
+								<div class="blog-body">
+									<div id="flot-placeholder" class="chart-height" style="padding: 0px;"><canvas class="flot-base" width="864" height="528" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 288px; height: 176px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 70px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 120px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 170px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 220px; text-align: center;">04:44</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 270px; text-align: center;">04:44</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 155px; left: 11px; text-align: right;">0%</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 79px; left: 6px; text-align: right;">50%</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 4px; left: 0px; text-align: right;">100%</div></div></div><canvas class="flot-overlay" width="864" height="528" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 288px; height: 176px;"></canvas><div class="legend"><div style="position: absolute; width: 45px; height: 14px; top: 14px; right: 14px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:14px;right:14px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid #76BBAD;overflow:hidden"></div></div></td><td class="legendLabel">Sales</td></tr></tbody></table></div></div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -173,6 +187,126 @@ $var email : $mail
 
 
 <script type="text/javascript">
+    var $$border_color = "#eee";
+    var $$grid_color = "#eee";
+    var $$default_black = "#666";
+
+    var $$info = "#5B90BF";
+    var $$danger = "#D66061";
+    var $$warning = "#ffaa3a";
+    var $$success = "#76BBAD";
+    var $$yellow = "#ffee00";
+    var $$facebook = "#4c66a4";
+    var $$twitter = "#00acee";
+    var $$linkedin = "#1a85bd";
+    var $$gplus = "#dc4937";
+    var $$brown = "#ab7967";
+
+    var data = [];
+    var dataset;
+    var totalPoints = 100;
+    var updateInterval = 1000;
+    var now = new Date().getTime();
+
+
+    function GetData() {
+        data.shift();
+
+        while (data.length < totalPoints) {
+            var y = Math.random() * 100;
+            $$.ajax({
+                url: "/sensor",
+                // This function fires when the request is successful: it takes the result of the ajax request and replaces the HTML in the target <div>
+                success: function(result){
+                    $$(".chats").append(result);
+
+                    var objDiv = document.getElementById("scroro");
+                    objDiv.scrollTop = objDiv.scrollHeight;
+                    $$(".chatty").val('')
+                }
+            });
+            // This just stops the <a> tag firing as a normal tag.
+            
+            var temp = [now += updateInterval, y];
+
+            data.push(temp);
+        }
+    }
+
+    var options = {
+        series: {
+            lines: {
+                show: true,
+                lineWidth: 1,
+                fill: true
+            },
+            points: {
+                show: false,
+                radius: 4,
+                fill: true,
+                fillColor: $$info,
+                lineWidth: 1
+            },
+        },
+        xaxis: {
+            mode: "time",
+            tickSize: [5, "second"],
+            tickFormatter: function (v, axis) {
+                var date = new Date(v);
+                if (date.getSeconds() % 20 == 0) {
+                    var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                    var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                    return hours + ":" + minutes;
+                } else {
+                    return "";
+                }
+            },
+            axisLabel: "Time",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Verdana, Arial',
+            axisLabelPadding: 10
+        },
+        yaxis: {
+            min: 0,
+            max: 100,
+            tickSize: 25,
+            tickFormatter: function (v, axis) {
+                if (v % 10 == 0) {
+                    return v + "%";
+                } else {
+                    return "";
+                }
+            },
+            axisLabel: "CPU loading",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Verdana, Arial',
+            axisLabelPadding: 5
+        },
+        legend:{
+            show: true,
+            position: 'ne'
+        },
+
+        tooltip: true,
+        tooltipOpts: {
+            content: '%s: %y'
+        },
+
+        colors: [$$success],
+
+        grid: {
+            hoverable: false,
+            clickable: false,
+            borderWidth: 0,
+            tickColor: '#eee',
+            borderColor: '#eee',
+            verticalLines: true,
+            horizontalLines: true,
+        },
+        shadowSize: 0,
+    };
 
     $$(document).ready(function(){
 
@@ -211,6 +345,28 @@ $var email : $mail
 
             }
         });
+
+
+
+
+		GetData();
+
+		dataset = [
+			{ label: "Sales", data: data, color: $$success }
+		];
+
+		$$.plot($$("#flot-placeholder"), dataset, options);
+
+		function update() {
+			GetData();
+
+			$$.plot($$("#flot-placeholder"), dataset, options)
+			setTimeout(update, updateInterval);
+		}
+
+		update();
+
+
 
 
     });
