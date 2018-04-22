@@ -16,7 +16,7 @@ $var email : $mail
                  a besoin de votre aide !
             </h4>
             <h4 class="text-center">
-                $if data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['rating'] == "":
+                $if data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['rating'] == 0 or data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['rating'] == '0':
                     -
                 $else:
                     $for i in range(1, 6):
@@ -44,7 +44,7 @@ $var email : $mail
                         <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
                     </form>
                 </div>
-            $if  (data.AllRequests.elements[id].data['rated'] == 0 or  data.AllRequests.elements[id].data['rated'] == 0) and data.AllRequests.elements[id].data['helper'] != -1 and data.AllRequests.elements[id].data['user'] == data.AllUsers.get_user(mail).data['id_user']  and (data.AllRequests.elements[id].data['status'] == '3' or data.AllRequests.elements[id].data['status'] == 3):
+            $if  (data.AllRequests.elements[id].data['rated'] == 0 or  data.AllRequests.elements[id].data['rated'] == '0') and data.AllRequests.elements[id].data['helper'] != -1 and data.AllRequests.elements[id].data['user'] == data.AllUsers.get_user(mail).data['id_user']  and (data.AllRequests.elements[id].data['status'] == '3' or data.AllRequests.elements[id].data['status'] == 3):
                 <form method="POST" action="/rate/$data.AllRequests.elements[id].data['helper']">
                     <div class="row">
                         <input type="text" name="_requestId_" class="hidden" value="$id">

@@ -12,76 +12,97 @@ $var email : $mail
 			<div class="row">
 
 				<div class="col-lg-3">
-					<div class="row">
-						<div class="blog blog-info">
-							<div class="blog-header">
-								<h5 class="blog-title">Statistique des requêtes</h5>
-							</div>
-							<div class="blog-body">
-								<table class="table table-no-border traffic-sources">
-									<tbody>
-									<tr>
-										<td class="col-xs-1"><span class="symbol orange"></span></td>
-										<td class="col-xs-6">
-											Requêtes résolues
-										</td>
-										<td class="col-xs-3">
-											$data.AllRequests.get_solved() %
-										</td>
-										<td class="col-xs-2">
-											<div class="progress progress-md">
-												<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="$data.AllRequests.get_solved()" aria-valuemin="0" aria-valuemax="100" style="width: $(data.AllRequests.get_solved())%">
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="col-xs-1"><span class="symbol pink"></span></td>
-										<td class="col-xs-6">
-											Requêtes en cours
-										</td>
-										<td class="col-xs-3">
-											$data.AllRequests.get_progress() %
-										</td>
-										<td class="col-xs-2">
-											<div class="progress progress-md">
-												<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="$data.AllRequests.get_progress()" aria-valuemin="0" aria-valuemax="100" style="width: $(data.AllRequests.get_progress())%">
-												</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="col-xs-1"><span class="symbol"></span></td>
-										<td class="col-xs-6">
-											Requêtes en attente
-										</td>
-										<td class="col-xs-3">
-											$data.AllRequests.get_waiting() %
-										</td>
-										<td class="col-xs-2">
-											<div class="progress progress-md">
-												<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="$data.AllRequests.get_waiting()" aria-valuemin="0" aria-valuemax="100" style="width: $(data.AllRequests.get_waiting())%">
-												</div>
-											</div>
-										</td>
-									</tr>
-									</tbody>
-								</table>
+					<div class="blog">
+						<div class="blog-header">
+							<h5 class="blog-title">Total</h5>
+						</div>
+						<div class="blog-body">
+							<div class="social-widget">
+								<div class="social-body">
+									<h1>$data.AllRequests.total<span>Requêtes</span></h1>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="blog">
-								<div class="blog-header">
-									<h5 class="blog-title">Total des requêtes</h5>
-								</div>
-								<div class="blog-body">
-									<div class="social-widget">
-										<div class="social-body">
-											<h1>$data.AllRequests.total<span>Requêtes</span></h1>
+					<div class="blog blog-info">
+						<div class="blog-header">
+							<h5 class="blog-title">Statistique des requêtes</h5>
+						</div>
+						<div class="blog-body">
+							<table class="table table-no-border traffic-sources">
+								<tbody>
+								<tr>
+									<td class="col-xs-1"><span class="symbol orange"></span></td>
+									<td class="col-xs-6">
+										Requêtes résolues
+									</td>
+									<td class="col-xs-3">
+										$data.AllRequests.get_solved() %
+									</td>
+									<td class="col-xs-2">
+										<div class="progress progress-md">
+											<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="$data.AllRequests.get_solved()" aria-valuemin="0" aria-valuemax="100" style="width: $(data.AllRequests.get_solved())%">
+											</div>
 										</div>
-									</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="col-xs-1"><span class="symbol pink"></span></td>
+									<td class="col-xs-6">
+										Requêtes en cours
+									</td>
+									<td class="col-xs-3">
+										$data.AllRequests.get_progress() %
+									</td>
+									<td class="col-xs-2">
+										<div class="progress progress-md">
+											<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="$data.AllRequests.get_progress()" aria-valuemin="0" aria-valuemax="100" style="width: $(data.AllRequests.get_progress())%">
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="col-xs-1"><span class="symbol"></span></td>
+									<td class="col-xs-6">
+										Requêtes en attente
+									</td>
+									<td class="col-xs-3">
+										$data.AllRequests.get_waiting() %
+									</td>
+									<td class="col-xs-2">
+										<div class="progress progress-md">
+											<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="$data.AllRequests.get_waiting()" aria-valuemin="0" aria-valuemax="100" style="width: $(data.AllRequests.get_waiting())%">
+											</div>
+										</div>
+									</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="blog">
+						<div class="blog-content">
+							<div class="success-bg center-align-text">
+								<div class="spacer-xs">
+									<i class="fas fa-thermometer fa-2x pull-left"></i>
+									<small class="text-white">Température</small>
+									<h3 class="no-margin no-padding">$data.TemperatureThread.sensor.temperature℃</h3>
+								</div>
+							</div>
+							<br/>
+							<div class="info-bg center-align-text">
+								<div class="spacer-xs">
+									<i class="fas fa-tint fa-2x pull-left"></i>
+									<small class="text-white">Humidité</small>
+									<h3 class="no-margin no-padding">$data.TemperatureThread.sensor.humidity%</h3>
+								</div>
+							</div>
+							<br/>
+							<div class="danger-bg center-align-text">
+								<div class="spacer-xs">
+									<i class="fas fa-sun fa-2x pull-left"></i>
+									<small class="text-white">Luminosité</small>
+									<h3 class="no-margin no-padding">$(data.TemperatureThread.sensor.lumen)Lm</h3>
 								</div>
 							</div>
 						</div>
@@ -145,14 +166,14 @@ $var email : $mail
 						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 							<div class="blog">
 								<div class="blog-header">
-									<h5 class="panel-title">Realtime Chart</h5>
+									<h5 class="panel-title">Monitoring</h5>
 								</div>
 								<div class="blog-body">
-									<div id="flot-placeholder" class="chart-height" style="padding: 0px;"><canvas class="flot-base" width="864" height="750" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 288px; height: 350px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 70px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 120px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 170px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 220px; text-align: center;">04:44</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 270px; text-align: center;">04:44</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 155px; left: 11px; text-align: right;">0%</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 79px; left: 6px; text-align: right;">50%</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 4px; left: 0px; text-align: right;">100%</div></div></div><canvas class="flot-overlay" width="864" height="528" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 288px; height: 176px;"></canvas><div class="legend"><div style="position: absolute; width: 45px; height: 14px; top: 14px; right: 14px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:14px;right:14px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid #76BBAD;overflow:hidden"></div></div></td><td class="legendLabel">Sales</td></tr></tbody></table></div></div>
+									<div id="flot-placeholder" class="chart-height" style="padding: 0px;height:300px"><canvas class="flot-base" width="864" height="750" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 288px; height: 350px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 70px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 120px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 170px; text-align: center;">04:43</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 220px; text-align: center;">04:44</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 13px; top: 165px; left: 270px; text-align: center;">04:44</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 155px; left: 11px; text-align: right;">0%</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 79px; left: 6px; text-align: right;">50%</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 4px; left: 0px; text-align: right;">100%</div></div></div><canvas class="flot-overlay" width="864" height="528" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 288px; height: 176px;"></canvas><div class="legend"><div style="position: absolute; width: 45px; height: 14px; top: 14px; right: 14px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:14px;right:14px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid #76BBAD;overflow:hidden"></div></div></td><td class="legendLabel">Décibels</td></tr></tbody></table></div></div>
 								</div>
 							</div>
 						</div>
-					
+
 				</div>
 
 				<div class="col-lg-3">
@@ -164,7 +185,7 @@ $var email : $mail
 								<div class="blog-header">
 									<h5 class="blog-title">Chats</h5>
 								</div>
-								<div class="blog-body scr" id="scroro" style="height:65%;overflow: scroll;">
+								<div class="blog-body scr" id="scroro" style="height:71%;overflow: scroll;">
 									<ul class="chats" id="chats">
 
 									</ul>
@@ -298,19 +319,30 @@ $var email : $mail
         shadowSize: 0,
     };
 
+    function scroll(){
+        var objDiv = document.getElementById("scroro");
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+
     $$(document).ready(function(){
 
+        var x = 0;
 
 
         $$(function() {
             setInterval(function() {
                 var url = "/refresh";
                 $$('.scr').find('#chats').load(url);
-            },2000);
+				if(x < 2){
+				    x = x+1;
+				    scroll();
+				}
+            },1000);
         });
 
-        var objDiv = document.getElementById("scroro");
-        objDiv.scrollTop = objDiv.scrollHeight;
+
+
+
 
 
         $$('.chatty').keydown(function(e) {
@@ -342,7 +374,7 @@ $var email : $mail
 		GetData();
 
 		dataset = [
-			{ label: "Sales", data: data, color: $$success }
+			{ label: "Décibels", data: data, color: $$success }
 		];
 
 		$$.plot($$("#flot-placeholder"), dataset, options);
