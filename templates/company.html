@@ -39,7 +39,7 @@ $code:
 											</td>
 											<td>$data.AllRoles.elements[v.data['id_role']].data['name']</td>
 
-											$if user.data['id_role'] == '1' or user.data['id_role'] == 1:
+											$if (user.data['id_role'] == '1' or user.data['id_role'] == 1) and user.data['id_user'] != v.data['id_user']:
 												<td>
 													$if v.data['active'] == '1' or v.data['active'] == 1:
 														Accepté

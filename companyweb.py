@@ -2,6 +2,30 @@ import web
 import useful
 import companydata
 
+
+class Refresh:
+	def GET(self):
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		return render.refresh(mail)
+
+class Message:
+	def GET(self):
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		data = web.input()
+		user = company.AllUsers.get_user(mail)
+		message = company.AllMessages.new_object()
+		message.data['content'] = data.text
+		message.data['user'] = data.id
+		message.data['begin'] = useful.now()
+		message.save(company,user)
+
+		return render.message(mail,message.data['id_message'])
+
+
 class User:
 	def GET(self, id):
 		mail = is_connected()
@@ -34,12 +58,18 @@ class Profile:
 			request = company.AllRequests.elements[data['_idrequest_']]
 			request.data['status'] = 3
 			request.save(company,user)
+			if request.data['helper'] != -1:
+				company.AllRequests.progress -= 1
+			else:
+				company.AllRequests.waiting -= 1
+			company.AllRequests.solved += 1
 		return render.profile(mail)
 
 
 class Request:
 	def GET(self):
 		mail = is_connected()
+
 		if mail is None:
 			raise web.seeother('/connection')
 		return render.request(mail)
@@ -67,6 +97,8 @@ class Request:
 				request.data['id_domain'] = id
 				request.data['remark'] = data['_remark_']
 				request.data['status'] = 1
+				request.data['rated'] = 0
+				request.data['helper'] = -1
 				request.save(company, user)
 				company.AllRequests.total += 1
 				company.AllRequests.waiting += 1
@@ -87,11 +119,27 @@ class Request_Detail:
 		data = web.input()
 		if mail is None:
 			raise web.seeother('/connection')
+		elif '_rated_' in data and data['_rated_'] == 'rated':
+			if '_rate_' in data and data['_rate_'] != "":
+				user = company.AllUsers.elements[id]
+				if user.data['rating'] == "":
+					user.data['rating'] = data['_rate_']
+					user.data['nb_rating'] = 1
+				else:
+					user.data['rating'] =  int(user.data['rating']) + int(data['_rate_'])
+					user.data['nb_rating'] = str(int(user.data['nb_rating']) + 1)
+				request = company.AllRequests.elements[data['_requestId_']]
+				request.data['rated'] = 1
+				user.save(company,user)
+				user = company.AllUsers.get_user(data['_mail_'])
+				request.save(company,user)
 		else:
 			user = company.AllUsers.get_user(mail)
 			request = company.AllRequests.elements[data['_requestId_']]
 			request.data['helper'] = user.data['id_user']
 			request.data['status'] = 2
+			company.AllRequests.waiting -= 1
+			company.AllRequests.progress += 1
 			user = company.AllUsers.elements[request.data['user']]
 			request.save(company,user)
 		raise web.seeother('/index')
@@ -231,6 +279,9 @@ if __name__ == "__main__":
 		'/profile', 'Profile',
 		'/company', 'Company',
 		'/user/(.+)', 'User',
+		'/rate/(.+)', 'Request_Detail',
+		'/message', 'Message',
+		'/refresh', 'Refresh'
     )
 	app = web.application(urls, globals())
 	app.notfound = notfound

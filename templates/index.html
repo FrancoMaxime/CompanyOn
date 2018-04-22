@@ -11,7 +11,85 @@ $var email : $mail
 		<div class="container-fluid">
 			<div class="row">
 
-				<div class="col-lg-4">
+				<div class="col-lg-3">
+					<div class="row">
+						<div class="blog blog-info">
+							<div class="blog-header">
+								<h5 class="blog-title">Statistique des requêtes</h5>
+							</div>
+							<div class="blog-body">
+								<table class="table table-no-border traffic-sources">
+									<tbody>
+									<tr>
+										<td class="col-xs-1"><span class="symbol orange"></span></td>
+										<td class="col-xs-6">
+											Requêtes résolues
+										</td>
+										<td class="col-xs-3">
+											$data.AllRequests.get_solved() %
+										</td>
+										<td class="col-xs-2">
+											<div class="progress progress-md">
+												<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="$data.AllRequests.get_solved()" aria-valuemin="0" aria-valuemax="100" style="width: $(data.AllRequests.get_solved())%">
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="col-xs-1"><span class="symbol pink"></span></td>
+										<td class="col-xs-6">
+											Requêtes en cours
+										</td>
+										<td class="col-xs-3">
+											$data.AllRequests.get_progress() %
+										</td>
+										<td class="col-xs-2">
+											<div class="progress progress-md">
+												<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="$data.AllRequests.get_progress()" aria-valuemin="0" aria-valuemax="100" style="width: $(data.AllRequests.get_progress())%">
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="col-xs-1"><span class="symbol"></span></td>
+										<td class="col-xs-6">
+											Requêtes en attente
+										</td>
+										<td class="col-xs-3">
+											$data.AllRequests.get_waiting() %
+										</td>
+										<td class="col-xs-2">
+											<div class="progress progress-md">
+												<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="$data.AllRequests.get_waiting()" aria-valuemin="0" aria-valuemax="100" style="width: $(data.AllRequests.get_waiting())%">
+												</div>
+											</div>
+										</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="blog">
+								<div class="blog-header">
+									<h5 class="blog-title">Total des requêtes</h5>
+								</div>
+								<div class="blog-body">
+									<div class="social-widget">
+										<div class="social-body">
+											<h1>$data.AllRequests.total<span>Requêtes</span></h1>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-lg-6">
 					<div class="blog blog-danger">
 						<div class="blog-header">
 							<h5 class="blog-title">Requêtes récentes</h5>
@@ -33,7 +111,7 @@ $var email : $mail
 													</div>
 													<div class="col-lg-3 hidden-xs">
 														<p>
-															<span class="question">$v.data['subject']</span>
+															<span class="question">$data.AllSpecialities.elements[v.data['id_domain']].data['name']</span>
 														</p>
 
 													</div>
@@ -62,61 +140,26 @@ $var email : $mail
 						</div>
 					</div>
 				</div>
+
 				<div class="col-lg-3">
-					<div class="blog blog-info">
-						<div class="blog-header">
-							<h5 class="blog-title">Statistique des requêtes</h5>
-						</div>
-						<div class="blog-body">
-							<table class="table table-no-border traffic-sources">
-								<tbody>
-								<tr>
-									<td class="col-xs-1"><span class="symbol orange"></span></td>
-									<td class="col-xs-6">
-										Requêtes résolues
-									</td>
-									<td class="col-xs-3">
-										$data.AllRequests.get_solved() %
-									</td>
-									<td class="col-xs-2">
-										<div class="progress progress-md">
-											<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="$data.AllRequests.get_solved()" aria-valuemin="0" aria-valuemax="100" style="width: $(data.AllRequests.get_solved())%">
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="col-xs-1"><span class="symbol pink"></span></td>
-									<td class="col-xs-6">
-										Requêtes en cours
-									</td>
-									<td class="col-xs-3">
-										$data.AllRequests.get_progress() %
-									</td>
-									<td class="col-xs-2">
-										<div class="progress progress-md">
-											<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="$data.AllRequests.get_progress()" aria-valuemin="0" aria-valuemax="100" style="width: $(data.AllRequests.get_progress())%">
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="col-xs-1"><span class="symbol"></span></td>
-									<td class="col-xs-6">
-										Requêtes en attente
-									</td>
-									<td class="col-xs-3">
-										$data.AllRequests.get_waiting() %
-									</td>
-									<td class="col-xs-2">
-										<div class="progress progress-md">
-											<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="$data.AllRequests.get_waiting()" aria-valuemin="0" aria-valuemax="100" style="width: $(data.AllRequests.get_waiting())%">
-											</div>
-										</div>
-									</td>
-								</tr>
-								</tbody>
-							</table>
+
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<!-- Widget starts -->
+							<div class="blog blog-info" >
+								<div class="blog-header">
+									<h5 class="blog-title">Chats</h5>
+								</div>
+								<div class="blog-body scr" id="scroro" style="height:65%;overflow: scroll;">
+									<ul class="chats" id="chats">
+
+									</ul>
+								</div>
+								<div class="blog-footer">
+									<textarea placeholder="Entrer votre message" class="form-control chatty"></textarea>
+								</div>
+							</div>
+							<!-- Widget ends -->
 						</div>
 					</div>
 
@@ -135,7 +178,39 @@ $var email : $mail
 
 
 
+        $$(function() {
+            setInterval(function() {
+                var url = "/refresh";
+                $$('.scr').find('#chats').load(url);
+            },1000);
+        });
 
+        var objDiv = document.getElementById("scroro");
+        objDiv.scrollTop = objDiv.scrollHeight;
+
+
+        $$('.chatty').keydown(function(e) {
+            if(e.which == 13) {
+
+                // This is the URL which the ajax request will fire at; I'm grabbing the HREF of the button as it's more flexible
+                var remoteURL = "/message?text="+$$('.chatty').val()+"&id="+$data.AllUsers.get_user(mail).data['id_user'];
+                // The actual AJAX call
+                $$.ajax({
+                    url: remoteURL,
+                    // This function fires when the request is successful: it takes the result of the ajax request and replaces the HTML in the target <div>
+                    success: function(result){
+                        $$(".chats").append(result);
+
+                        var objDiv = document.getElementById("scroro");
+                        objDiv.scrollTop = objDiv.scrollHeight;
+                        $$(".chatty").val('')
+                    }
+                });
+                // This just stops the <a> tag firing as a normal tag.
+                e.preventDefault();
+
+            }
+        });
 
 
     });

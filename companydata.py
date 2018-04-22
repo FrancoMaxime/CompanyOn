@@ -10,6 +10,7 @@ class CompagnyOn():
 		self.AllConnectedUsers = AllConnectedUsers()
 		self.AllSpecialities = AllSpecialities(self)
 		self.AllRequests = AllRequests(self)
+		self.AllMessages = AllMessages(self)
 		
 	def load(self):
 		self.AllUsers.load()
@@ -17,6 +18,7 @@ class CompagnyOn():
 		self.AllRoles.load()
 		self.AllSpecialities.load()
 		self.AllRequests.load()
+		self.AllMessages.load()
 		self.AllRequests.load_status()
 		
 	def find_all_from_object(self, object):
@@ -30,6 +32,8 @@ class CompagnyOn():
 			return self.AllSpecialities
 		elif object.__class__.__name__ == Request.__name__ :
 			return self.AllRequests
+		elif object.__class__.__name__ == Message.__name__ :
+			return self.AllMessages
 
 class AllObjects():
 	def __init__(self, config):
@@ -223,7 +227,7 @@ class Request(Object):
 class AllRequests(AllObjects):
 	def __init__(self, config):
 		AllObjects.__init__(self, config)
-		self.fields = ['begin','id_request','subject','id_domain', 'remark', 'status' ,'user', 'helper']
+		self.fields = ['begin','id_request','subject','id_domain', 'remark', 'status' ,'user', 'helper', 'rated']
 		self.filename = 'csv/requests.csv'
 		self.keyid = 'id_request'
 		self.solved = 0
@@ -251,18 +255,38 @@ class AllRequests(AllObjects):
 	
 	def get_waiting(self):
 		if(self.total > 0):
-			return (self.waiting / float(self.total))* 100
+			return '{0:.2f}'.format((self.waiting / float(self.total))* 100, 2)
 		return 0
 		
 	def get_progress(self):
 		if(self.total > 0):
-			return (self.progress / float(self.total))* 100
+			return '{0:.2f}'.format((self.progress / float(self.total))* 100)
 		return 0
 		
 	def get_solved(self):
 		if(self.total > 0) :
-			return (self.solved / float(self.total))* 100
+			return '{0:.2f}'.format((self.solved / float(self.total))* 100)
 		return 0
+
+class Message(Object):
+	def __init__(self):
+		Object.__init__(self)
+
+class AllMessages(AllObjects):
+	def __init__(self, config):
+		AllObjects.__init__(self, config)
+		self.fields = ['begin','id_message','content','user']
+		self.filename = 'csv/messages.csv'
+		self.keyid = 'id_message'
+
+	def new_object(self):
+		spec = Message()
+		spec.data[self.keyid] = str(self.last_id +1)
+		self.last_id += 1
+		return spec
+	def get_message(self, id):
+		return self.elements[str(id)]
+
 
 class Sensor(Object):
 	def __init__(self):

@@ -15,6 +15,17 @@ $var email : $mail
             $if data.AllRequests.elements[id].data['user'] != data.AllUsers.get_user(mail).data['id_user'] and (data.AllRequests.elements[id].data['status'] == 1 or data.AllRequests.elements[id].data['status'] == '1'):
                  a besoin de votre aide !
             </h4>
+            <h4 class="text-center">
+                $if data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['rating'] == "":
+                    -
+                $else:
+                    $for i in range(1, 6):
+                        $if (int(data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['rating']) / int(data.AllUsers.elements[data.AllRequests.elements[id].data['user']].data['nb_rating'])) >= i:
+                            <i class="fas fa-star" style="color:darkorange"></i>
+                        $else:
+                            <i class="fas fa-star"></i>
+
+            </h4>
 
             <br/>
             <div class="blog blog-content">
@@ -28,11 +39,29 @@ $var email : $mail
                 <div class="modal-footer">
                     <form method="POST" action="/request/1">
                         <input type="text" name="_requestId_" class="hidden" value="$id">
-                        <input type="text" name="-_mail_" class="hidden" value="$mail">
+                        <input type="text" name="_mail_" class="hidden" value="$mail">
                         <button type="submit" class="btn btn-primary btn-saved">Aider</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
                     </form>
                 </div>
+            $if  (data.AllRequests.elements[id].data['rated'] == 0 or  data.AllRequests.elements[id].data['rated'] == 0) and data.AllRequests.elements[id].data['helper'] != -1 and data.AllRequests.elements[id].data['user'] == data.AllUsers.get_user(mail).data['id_user']  and (data.AllRequests.elements[id].data['status'] == '3' or data.AllRequests.elements[id].data['status'] == 3):
+                <form method="POST" action="/rate/$data.AllRequests.elements[id].data['helper']">
+                    <div class="row">
+                        <input type="text" name="_requestId_" class="hidden" value="$id">
+                        <input type="text" name="_mail_" class="hidden" value="$mail">
+                        <div class="col-lg-2">
+                            <input type="text" size="2" name="_rate_" class="text-right form-control">
+                        </div>
+                        <div class="col-lg-1">
+                            <h4>/5</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <button type="submit" name="_rated_" value="rated" class="btn btn-primary btn-saved">Evaluer</button>
+                        </div>
+                    </div>
+                </form>
 
 
 

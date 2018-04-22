@@ -22,21 +22,22 @@ $var email : $mail
                                 <th>Statut</th>
                             </thead>
                             <tbody>
-								$for k, v in data.AllRequests.elements.items():
-									<tr>
-										<td><img src="static/img/users$v.data['user']" alt="Smiley face" height="42" width="42"></td>
-										<td>$data.AllUsers.elements[v.data['user']].data['firstname'] $data.AllUsers.elements[v.data['user']].data['lastname']</td>
-										<td>$v.data['subject']</td>
-										<td>$data.AllSpecialities.elements[v.data['id_domain']].data['name']</td>
-										<td>
-											$if v.data['status'] == '1' or v.data['status'] == 1:
-												En attente
-											$elif v.data['status'] == '2' or v.data['status'] == 2:
-												En cours
-											$elif v.data['status'] == '3' or v.data['status'] == 3:
-												Finit <a href="#"  data-id="$k" class="pull-right eye" data-toggle="tooltip"  title="" data-original-title="Contact"><i class="fas fa-eye"></i></a>
-										</td>
-									</tr>
+                                $for k, v in data.AllRequests.elements.items():
+                                    <tr>
+                                        <td><img src="static/img/users$v.data['user']" alt="Smiley face" height="42" width="42"></td>
+                                        <td>$data.AllUsers.elements[v.data['user']].data['firstname'] $data.AllUsers.elements[v.data['user']].data['lastname']</td>
+                                        <td>$v.data['subject']</td>
+                                        <td>$data.AllSpecialities.elements[v.data['id_domain']].data['name']</td>
+                                        <td>
+                                            $if v.data['status'] == '1' or v.data['status'] == 1:
+                                                En attente
+                                            $elif v.data['status'] == '2' or v.data['status'] == 2:
+                                                En cours
+                                            $elif v.data['status'] == '3' or v.data['status'] == 3:
+                                                Fini
+                                            <a href="#"  data-id="$k" class="pull-right eye" data-toggle="tooltip"  title="" data-original-title="Contact"><i class="fas fa-eye"></i></a>
+                                        </td>
+                                    </tr>
                             </tbody>
                         </table>
                     </div>

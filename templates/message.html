@@ -1,0 +1,15 @@
+$def with (mail,message)
+$var recursive : True
+<li class="out">
+    <img class="avatar" alt="" src="static/img/users$data.AllUsers.get_user(mail).data['id_user']">
+    <div class="message">
+        <span class="arrow"></span>
+        <a href="#" class="name" data-original-title="" title="">$data.AllUsers.get_user(mail).data['firstname']</a>
+        <span class="date-time">
+            le $data.AllMessages.elements[message].data['begin']<i class="fa fa-clock-o"></i>
+        </span>
+        <span class="body body-blue">
+            $data.AllMessages.elements[message].data['content'] <i class="fa fa-smile-o fa-lg text-primary"></i>
+        </span>
+    </div>
+</li>
