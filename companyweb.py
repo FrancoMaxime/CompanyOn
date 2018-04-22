@@ -231,6 +231,13 @@ class Company:
 		elif '_select_'in data and data['_select_'] == "select":
 			pass	
 		
+class Sensor:
+	def GET(self):
+		mail = is_connected()
+		if mail is None:
+			raise web.seeother('/connection')
+		return render.sensor()
+		
 class Disconnect():
     def GET(self):
         mail = is_connected()
@@ -282,7 +289,8 @@ if __name__ == "__main__":
 			'/user/(.+)', 'User',
 			'/rate/(.+)', 'Request_Detail',
 			'/message', 'Message',
-			'/refresh', 'Refresh'
+			'/refresh', 'Refresh',
+			'/sensor' , 'Sensor'
 		)
 		app = web.application(urls, globals())
 		app.notfound = notfound
