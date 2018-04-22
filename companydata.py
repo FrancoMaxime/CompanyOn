@@ -4,6 +4,8 @@ import useful
 import alsaaudio, time, audioop
 import time
 import threading
+import requests
+import json
 
 class CompagnyOn():
 	def __init__(self):
@@ -15,6 +17,7 @@ class CompagnyOn():
 		self.AllRequests = AllRequests(self)
 		self.AllMessages = AllMessages(self)
 		self.UpdateThread = UpdateThread(self)
+		self.TemperatureThread = TemperatureThread(self)
 		self.is_threading = True
 		
 	def load(self):
@@ -26,6 +29,7 @@ class CompagnyOn():
 		self.AllMessages.load()
 		self.AllRequests.load_status()
 		self.UpdateThread.start()
+		self.TemperatureThread.start()
 		
 	def find_all_from_object(self, object):
 		if object.__class__.__name__ == User.__name__:
@@ -306,6 +310,12 @@ class Sensor():
 	def last_value(self):
 		return self.value[-1]
 		
+class Sensor2():
+	def __init__(self):
+		self.temperature=0
+		self.humidity=0
+		self.lumen= 0
+	
 		
 class UpdateThread(threading.Thread):
     def __init__(self, company):
@@ -330,3 +340,25 @@ class UpdateThread(threading.Thread):
 			moy /= 100
 			self.sensor.add_value(moy)
 			moy = 0
+			
+class TemperatureThread(threading.Thread):
+    def __init__(self, company):
+		threading.Thread.__init__(self)
+		self.company = company
+		self.sensor = Sensor2()
+    def run(self):
+		url = 'https://techofficeopendata.azurewebsites.net/api/Data?DeviceId=12&MaxRow=4'
+		headers = {}
+		headers['accept'] = 'application/json'
+		headers['Authorization'] = '093fb7e2-9387-41ee-babe-08d59f923971'
+		while self.company.is_threading:
+			r = requests.get(url, headers=headers)
+			test = json.loads(r.text)
+			for i in range(len(test)):
+				if test[i]['sensor']['sensorId'] == 49:
+					self.sensor.lumen = test[i]['value']
+				if test[i]['sensor']['sensorId'] == 50:
+					self.sensor.humidity = test[i]['value']
+				if test[i]['sensor']['sensorId'] == 51:
+					self.sensor.temperature = test[i]['value']
+			time.sleep(1200)
