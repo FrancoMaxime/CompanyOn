@@ -1,7 +1,9 @@
 $def with (mail)
 $var recursive : True
 $if data.AllMessages.last_id < 16:
-    $for k,v in data.AllMessages.elements.items():
+    $for id in range(1,len(data.AllMessages.elements)+1):
+        $code:
+            v = data.AllMessages.get_message(id)
         $if v.data['user'] == data.AllUsers.get_user(mail).data['id_user']:
             <li class="out">
                 <img class="avatar" alt="" src="static/img/users$v.data['user']">
